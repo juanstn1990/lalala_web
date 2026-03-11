@@ -2718,7 +2718,7 @@
     };
 
     try {
-      const res  = await fetch('http://localhost:3001/api/generar-letra', {
+      const res  = await fetch('/api/generar-letra', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -2773,7 +2773,7 @@
     document.getElementById('if-enviado').style.display = 'block';
 
     try {
-      await fetch('http://localhost:3001/api/webhook-cancion', {
+      await fetch('/api/webhook-cancion', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ letra, estilo, whatsapp: tel, emocion: ifData['if-emocion'] || null, voz: ({ 'Mujer': 'female vocal', 'Hombre': 'male vocal', 'Niño / Niña': 'child vocal' })[ifData['if-voz']] || null, nombre: document.getElementById('if-nombre')?.value.trim() || null, tuNombre: document.getElementById('if-tunombre')?.value.trim() || null, pais, plan: ifData['if-plan'] || null, planMoneda: window._lalalaPrecio?.currency || 'USD', planValor: window._lalalaPrecio ? window._lalalaPrecio[ifData['if-plan']?.toLowerCase()] || null : ({ 'Essential': '$10', 'Premium': '$15' })[ifData['if-plan']] || null }),
@@ -2792,7 +2792,7 @@
       // Disparar webhook con inicio=true (fire and forget)
       try {
         const pais = (() => { try { const p = JSON.parse(localStorage.getItem('lalala_geo')); return p?.data?.country_name || null; } catch(e) { return null; } })();
-        fetch('http://localhost:3001/api/webhook-cancion', {
+        fetch('/api/webhook-cancion', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ inicio: true, tuNombre, whatsapp: tel, nombre, pais }),
