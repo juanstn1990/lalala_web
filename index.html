@@ -1,0 +1,2994 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lalala music! — Canciones mágicas para niños</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/css/intlTelInput.css" />
+
+  <style>
+  /* ─── RESET & VARS ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:  #08111e;   /* azul muy oscuro */
+    --dark:   #0c1828;   /* fondo alt */
+    --card:   #0f2038;   /* tarjeta azul oscuro */
+    --card2:  #132540;   /* tarjeta alt */
+    --border: #1e3a5f;   /* borde */
+    --y:      #ffd60a;   /* amarillo brillante */
+    --y2:     #ffe033;   /* amarillo claro */
+    --y3:     #fff5a0;   /* amarillo pálido */
+    --white:  #e8f4ff;   /* texto blanco-azulado */
+    --gray:   #7aa5c8;   /* texto secundario */
+    --gray2:  #3d6080;   /* texto tenue */
+    --blue:   #4cc9f0;   /* azul eléctrico */
+    --r: 20px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── UTILS ─── */
+  .serif { font-family: 'Fredoka One', cursive; }
+  .tag {
+    display: inline-block;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--y);
+    margin-bottom: .75rem;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 68px;
+    background: rgba(8,17,30,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Fredoka One', cursive;
+    font-weight: 400; font-size: 1.5rem;
+    color: var(--y); text-decoration: none; letter-spacing: 1px;
+  }
+
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: .875rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-wa {
+    display: flex; align-items: center; gap: .45rem;
+    background: var(--y); color: var(--black) !important;
+    padding: .5rem 1.1rem; border-radius: 50px;
+    font-weight: 700 !important; font-size: .85rem !important;
+    transition: background .2s, transform .15s;
+  }
+  .nav-wa:hover { background: var(--y2) !important; transform: scale(1.04); }
+  .nav-wa svg { width: 16px; height: 16px; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 4rem;
+    padding: 120px 7% 80px;
+    position: relative; overflow: hidden;
+    background: var(--dark);
+  }
+
+  .hero-glow {
+    position: absolute; top: -10%; right: -5%;
+    width: 60vw; height: 70vh;
+    background: radial-gradient(ellipse, rgba(120,40,200,.22) 0%, rgba(255,214,10,.08) 45%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute; bottom: 0; left: -5%;
+    width: 40vw; height: 50vh;
+    background: radial-gradient(ellipse, rgba(76,201,240,.18) 0%, rgba(30,20,80,.1) 55%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-star {
+    position: absolute; border-radius: 50%;
+    background: white; pointer-events: none; z-index: 1;
+    transform: scale(2.2);
+    animation: twinkle calc(var(--td, 3s) * 0.5) ease-in-out infinite;
+    animation-delay: var(--dl, 0s);
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: var(--op, .7); transform: scale(2.2); }
+    50%      { opacity: .05; transform: scale(.6); }
+  }
+
+  .astro-wrap {
+    position: relative; z-index: 2;
+    animation: astro-float 5s ease-in-out infinite;
+    filter: drop-shadow(0 24px 48px rgba(76,201,240,.18));
+  }
+  @keyframes astro-float {
+    0%,100% { transform: translateY(0)    rotate(-1.5deg); }
+    50%      { transform: translateY(-22px) rotate(1.5deg); }
+  }
+
+  .hero-left { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,214,10,.1); color: var(--y2);
+    font-size: .75rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: .4rem 1rem; border-radius: 50px; margin-bottom: 1.75rem;
+    border: 1px solid rgba(255,214,10,.3);
+    animation: fadeUp .5s ease both;
+  }
+
+  .badge-pulse {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--y); animation: pulse 1.8s infinite;
+  }
+
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    font-weight: 400; line-height: 1.1; letter-spacing: .5px;
+    margin-bottom: 1.5rem; color: var(--white);
+    animation: fadeUp .5s .08s ease both;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--y);
+    display: inline-block;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem; line-height: 1.75; color: var(--gray);
+    max-width: 460px; margin-bottom: 2.25rem;
+    animation: fadeUp .5s .16s ease both;
+  }
+
+  .hero-sub strong { color: var(--white); font-weight: 800; }
+
+  .hero-ctas {
+    display: flex; gap: .85rem; flex-wrap: wrap;
+    animation: fadeUp .5s .24s ease both;
+  }
+
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: .55rem;
+    background: var(--y); color: var(--black);
+    padding: .9rem 1.75rem; border-radius: 50px;
+    font-size: 1rem; font-weight: 800; text-decoration: none;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(255,214,10,.35);
+  }
+  .btn-wa:hover { background: var(--y2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,214,10,.5); }
+  .btn-wa svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: .55rem;
+    background: transparent; color: var(--white);
+    border: 1.5px solid rgba(76,201,240,.35);
+    padding: .9rem 1.75rem; border-radius: 50px;
+    font-size: .95rem; font-weight: 600; text-decoration: none;
+    transition: border-color .2s, background .2s, transform .15s;
+  }
+  .btn-ghost:hover { border-color: rgba(76,201,240,.7); background: rgba(76,201,240,.08); transform: translateY(-2px); }
+
+  .play-wrap {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(76,201,240,.15);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play-wrap::after {
+    content: '';
+    border-style: solid; border-width: 5px 0 5px 9px;
+    border-color: transparent transparent transparent var(--white);
+    margin-left: 2px;
+  }
+
+  /* ─── SONG CARD (hero right) ─── */
+  .hero-right {
+    position: relative; z-index: 2;
+    animation: fadeUp .5s .3s ease both;
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+
+  .song-card {
+    background: rgba(255,214,10,.08);
+    border: 1px solid rgba(255,214,10,.2);
+    border-radius: 24px; padding: 1.5rem;
+    position: relative; overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .song-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,214,10,.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .song-card-top {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;
+  }
+
+  .album-art {
+    width: 64px; height: 64px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(255,214,10,.2), rgba(76,201,240,.2));
+    box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  }
+
+  .song-meta { flex: 1; min-width: 0; }
+
+  .song-occasion {
+    font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--y2); margin-bottom: .25rem;
+  }
+
+  .song-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem; font-weight: 400; color: var(--white);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .song-artist { font-size: .8rem; color: rgba(232,244,255,.45); margin-top: .15rem; }
+
+  .play-btn-big {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--y); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: transform .15s, background .2s;
+  }
+  .play-btn-big:hover { transform: scale(1.08); background: var(--y2); }
+  .play-btn-big::after {
+    content: '';
+    border-style: solid; border-width: 7px 0 7px 12px;
+    border-color: transparent transparent transparent var(--black);
+    margin-left: 3px;
+  }
+
+  /* animated waveform */
+  .waveform-player { display: flex; align-items: center; gap: 3px; height: 36px; }
+
+  .waveform-player .bar {
+    flex: 1; border-radius: 3px; background: var(--y2);
+    opacity: .8; animation: wave 1.2s ease-in-out infinite;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(var(--scale)); }
+  }
+
+  .waveform-player .bar:nth-child(1)  { --scale: .25; height: 40%; animation-delay: 0s; }
+  .waveform-player .bar:nth-child(2)  { --scale: .7;  height: 75%; animation-delay: .08s; }
+  .waveform-player .bar:nth-child(3)  { --scale: .4;  height: 55%; animation-delay: .16s; }
+  .waveform-player .bar:nth-child(4)  { --scale: .9;  height: 90%; animation-delay: .24s; }
+  .waveform-player .bar:nth-child(5)  { --scale: .3;  height: 40%; animation-delay: .32s; }
+  .waveform-player .bar:nth-child(6)  { --scale: .8;  height: 85%; animation-delay: .40s; }
+  .waveform-player .bar:nth-child(7)  { --scale: .5;  height: 65%; animation-delay: .48s; }
+  .waveform-player .bar:nth-child(8)  { --scale: 1;   height: 100%; animation-delay: .56s; }
+  .waveform-player .bar:nth-child(9)  { --scale: .35; height: 45%; animation-delay: .64s; }
+  .waveform-player .bar:nth-child(10) { --scale: .75; height: 80%; animation-delay: .72s; }
+  .waveform-player .bar:nth-child(11) { --scale: .45; height: 60%; animation-delay: .80s; }
+  .waveform-player .bar:nth-child(12) { --scale: .85; height: 90%; animation-delay: .88s; }
+  .waveform-player .bar:nth-child(13) { --scale: .25; height: 35%; animation-delay: .96s; }
+  .waveform-player .bar:nth-child(14) { --scale: .6;  height: 70%; animation-delay: 1.04s; }
+  .waveform-player .bar:nth-child(15) { --scale: .4;  height: 50%; animation-delay: 1.12s; }
+  .waveform-player .bar:nth-child(16) { --scale: .8;  height: 85%; animation-delay: .06s; }
+  .waveform-player .bar:nth-child(17) { --scale: .3;  height: 40%; animation-delay: .14s; }
+  .waveform-player .bar:nth-child(18) { --scale: .95; height: 95%; animation-delay: .22s; }
+  .waveform-player .bar:nth-child(19) { --scale: .5;  height: 60%; animation-delay: .30s; }
+  .waveform-player .bar:nth-child(20) { --scale: .65; height: 75%; animation-delay: .38s; }
+
+  .song-time {
+    display: flex; justify-content: space-between;
+    font-size: .72rem; color: var(--gray2); margin-top: .6rem;
+  }
+
+  /* mini stats */
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(76,201,240,.2);
+    border: 1px solid rgba(76,201,240,.2); border-radius: 16px; overflow: hidden;
+  }
+
+  .stat-box { background: rgba(76,201,240,.08); padding: 1rem .75rem; text-align: center; }
+
+  .stat-num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem; font-weight: 400; color: var(--y); line-height: 1;
+  }
+  .stat-lbl { font-size: .7rem; color: rgba(76,201,240,.7); margin-top: .2rem; }
+
+  /* ─── STRIP (trust) ─── */
+  .trust-strip {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .trust-ticker {
+    display: flex; align-items: center;
+    white-space: nowrap;
+    animation: trust-scroll 20s linear infinite;
+  }
+
+  .trust-strip:hover .trust-ticker { animation-play-state: paused; }
+
+  @keyframes trust-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .trust-item {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .82rem; font-weight: 700; color: var(--y2);
+    padding: .9rem 1.6rem; flex-shrink: 0;
+  }
+
+  .trust-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  .trust-item.is-price {
+    color: var(--black); background: var(--y);
+    margin: .35rem .6rem; border-radius: 50px;
+    padding: .35rem 1rem; font-size: .85rem;
+  }
+
+  .trust-sep {
+    color: var(--border); flex-shrink: 0; font-size: 1rem; padding: 0 .2rem;
+  }
+
+  /* ─── GENERIC SECTION ─── */
+  section { padding: 100px 7%; }
+
+  h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 400; letter-spacing: .5px; line-height: 1.15;
+    margin-bottom: .9rem; color: var(--white);
+  }
+
+  h2 em { font-style: normal; color: var(--y); }
+
+  .section-sub { color: var(--gray); font-size: 1.05rem; line-height: 1.75; max-width: 500px; }
+
+  /* ─── MOMENT SECTION ─── */
+  .moment {
+    background: var(--black);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; padding: 100px 7%;
+  }
+
+  .moment-visual { position: relative; display: flex; flex-direction: column; gap: 1rem; }
+
+  .moment-quote {
+    background: rgba(76,201,240,.08);
+    border: 1px solid rgba(76,201,240,.3);
+    border-radius: 20px; padding: 1.75rem; position: relative;
+  }
+
+  .moment-quote::before {
+    content: '"';
+    font-family: 'Fredoka One', cursive;
+    font-size: 5rem; line-height: .8;
+    color: var(--y); opacity: .4;
+    position: absolute; top: .5rem; left: 1.25rem;
+  }
+
+  .moment-quote p {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem; font-style: italic; line-height: 1.6; color: var(--white);
+    padding-top: .5rem;
+  }
+
+  .moment-author { display: flex; align-items: center; gap: .65rem; margin-top: .9rem; }
+  .moment-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(76,201,240,.25);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .moment-name { font-size: .85rem; font-weight: 700; color: var(--white); }
+  .moment-detail { font-size: .75rem; color: var(--gray); }
+
+  .moment-mini {
+    background: rgba(76,201,240,.08);
+    border: 1px solid rgba(76,201,240,.2); border-radius: 14px;
+    padding: 1rem 1.25rem;
+    display: flex; align-items: center; gap: .75rem;
+    font-size: .85rem; color: var(--gray);
+  }
+  .moment-mini strong { color: var(--white); }
+
+  .inline-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 1.75rem;
+  }
+  .if-spinner {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 3px solid var(--border);
+    border-top-color: var(--y);
+    animation: spin .8s linear infinite;
+    margin: 0 auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── intl-tel-input dark theme ── */
+  .iti { width: 100%; }
+  .iti__tel-input {
+    width: 100% !important;
+    background: var(--card) !important;
+    color: var(--white) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    padding-top: .75rem !important;
+    padding-bottom: .75rem !important;
+    padding-right: 1rem !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-size: .9rem !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+  }
+  .iti__tel-input:focus { border-color: #4cc9f0 !important; }
+  .iti__tel-input::placeholder { color: var(--gray2) !important; }
+  .iti__flag-container { background: transparent; }
+  .iti__selected-dial-code { color: var(--gray); font-size: .85rem; }
+  .iti__dropdown-content {
+    background: #0c1828 !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,.5) !important;
+  }
+  .iti__search-input {
+    background: var(--dark) !important;
+    color: var(--white) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    padding: .5rem .75rem !important;
+    font-family: 'Nunito', sans-serif !important;
+  }
+  .iti__search-input::placeholder { color: var(--gray2) !important; }
+  .iti__country { color: var(--gray) !important; }
+  .iti__country.iti__highlight, .iti__country:hover { background: rgba(76,201,240,.1) !important; color: var(--white) !important; }
+  .iti__country-name { color: var(--white) !important; }
+  .iti__dial-code { color: var(--gray) !important; }
+  .mf-input option, .mf-input optgroup {
+    background: #0c1828; color: var(--white);
+  }
+
+  /* ─── STEPS ─── */
+  #como-funciona { background: var(--dark); }
+
+  .steps-header { text-align: center; margin-bottom: 4.5rem; }
+  .steps-header .section-sub { margin: .75rem auto 0; }
+
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; max-width: 1100px; margin: 0 auto; position: relative;
+  }
+
+  .steps-grid::before {
+    content: '';
+    position: absolute;
+    top: 44px; left: calc(12.5% + 20px); right: calc(12.5% + 20px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--y) 0%, var(--y2) 50%, var(--y3) 100%);
+  }
+
+  .step-item { padding: 0 1.5rem; text-align: center; position: relative; }
+
+  .step-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    color: var(--black);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .step-item:nth-child(1) .step-circle { background: var(--y);  box-shadow: 0 0 0 8px rgba(76,201,240,.15), 0 0 0 16px rgba(76,201,240,.07); }
+  .step-item:nth-child(2) .step-circle { background: var(--y2); box-shadow: 0 0 0 8px rgba(255,214,10,.2),  0 0 0 16px rgba(255,214,10,.08); }
+  .step-item:nth-child(3) .step-circle { background: var(--y3); box-shadow: 0 0 0 8px rgba(255,214,10,.2),  0 0 0 16px rgba(255,214,10,.08); }
+  .step-item:nth-child(4) .step-circle { background: var(--y);  box-shadow: 0 0 0 8px rgba(76,201,240,.15),  0 0 0 16px rgba(76,201,240,.07); }
+
+  .step-item h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem; font-weight: 400; margin-bottom: .6rem; color: var(--white);
+  }
+  .step-item p { font-size: .875rem; color: var(--gray); line-height: 1.65; }
+
+  .inline-cta { display: flex; justify-content: center; margin-top: 3.5rem; }
+
+  /* ─── OCCASIONS ─── */
+  #ocasiones { background: var(--black); }
+
+  .occ-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
+
+  .occ-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+
+  .occ-card {
+    background: var(--card);
+    border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.25rem .75rem; text-align: center; cursor: pointer;
+    transition: border-color .2s, transform .2s, background .2s;
+  }
+  .occ-card:hover { border-color: var(--y); transform: translateY(-4px); background: rgba(76,201,240,.12); }
+  .occ-icon { font-size: 1.8rem; margin-bottom: .5rem; }
+  .occ-name { font-size: .78rem; font-weight: 700; color: var(--white); }
+
+  /* ─── MUSIC PLAYER ─── */
+  #ejemplos { background: var(--dark); }
+
+  .player-section-header { text-align: center; margin-bottom: 3rem; }
+  .player-section-header .section-sub { margin: .75rem auto 0; }
+
+  .player-wrap {
+    max-width: 740px; margin: 0 auto;
+    background: #0a1929;
+    border: 1px solid #1e3a5f;
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 28px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(76,201,240,.15);
+  }
+
+  /* Window title bar */
+  .player-bar {
+    background: linear-gradient(90deg, #091525 0%, #0a1929 55%);
+    border-bottom: 1px solid #1e3a5f;
+    padding: .6rem 1.1rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .player-bar-name {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .75rem; font-weight: 700; color: var(--y2); letter-spacing: .05em;
+  }
+  .player-bar-name svg { width: 13px; height: 13px; }
+  .player-win-btns { display: flex; gap: .4rem; }
+  .player-win-btns span { width: 10px; height: 10px; border-radius: 50%; display: block; }
+
+  /* Now playing */
+  .player-np {
+    padding: 1.4rem 1.5rem;
+    display: flex; align-items: center; gap: 1.2rem;
+    border-bottom: 1px solid #1e3a5f;
+    background: linear-gradient(180deg, #0c2040 0%, #0a1929 100%);
+  }
+
+  .player-art {
+    width: 86px; height: 86px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,.5);
+    transition: background .45s;
+  }
+
+  .player-song-info { flex: 1; min-width: 0; }
+  .player-occ { font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--y2); margin-bottom: .2rem; }
+  .player-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem; font-weight: 400; color: #e8f4ff;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: .2rem;
+  }
+  .player-recipient { font-size: .8rem; color: #4a7a9b; margin-bottom: .5rem; }
+  .player-genre-tag {
+    display: inline-block;
+    background: rgba(76,201,240,.18); color: var(--y2);
+    font-size: .66rem; font-weight: 700; padding: .16rem .55rem; border-radius: 50px;
+  }
+
+  /* Equalizer */
+  .eq-wrap { display: flex; align-items: flex-end; gap: 3px; height: 44px; flex-shrink: 0; }
+  .eq-wrap .eq-b {
+    width: 5px; border-radius: 2px 2px 0 0;
+    background: var(--y); animation: eqBounce .7s ease-in-out infinite;
+    transform-origin: bottom;
+  }
+  .eq-wrap.paused .eq-b { animation-play-state: paused; }
+  @keyframes eqBounce {
+    0%,100% { transform: scaleY(1); }
+    50% { transform: scaleY(.12); }
+  }
+  .eq-wrap .eq-b:nth-child(1){ height:38%; animation-duration:.65s; animation-delay:0s; }
+  .eq-wrap .eq-b:nth-child(2){ height:82%; animation-duration:.9s;  animation-delay:.1s; }
+  .eq-wrap .eq-b:nth-child(3){ height:55%; animation-duration:.72s; animation-delay:.2s; }
+  .eq-wrap .eq-b:nth-child(4){ height:96%; animation-duration:.58s; animation-delay:.3s; }
+  .eq-wrap .eq-b:nth-child(5){ height:42%; animation-duration:.8s;  animation-delay:.4s; }
+  .eq-wrap .eq-b:nth-child(6){ height:70%; animation-duration:.68s; animation-delay:.5s; }
+  .eq-wrap .eq-b:nth-child(7){ height:100%;animation-duration:.55s; animation-delay:.6s; }
+
+  /* Progress */
+  .player-progress-area { padding: .85rem 1.5rem .5rem; background: #0a1929; }
+  .player-progress-track {
+    height: 5px; background: #1e3a5f; border-radius: 5px;
+    cursor: pointer; position: relative; margin-bottom: .45rem;
+  }
+  .player-progress-track:hover { height: 7px; }
+  .player-progress-fill {
+    height: 100%; border-radius: 5px;
+    background: linear-gradient(90deg, var(--y), var(--y3));
+    width: 33%; transition: width .9s linear; position: relative;
+  }
+  .player-progress-fill::after {
+    content: ''; position: absolute; right: -5px; top: 50%;
+    transform: translateY(-50%);
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--y2); box-shadow: 0 0 8px rgba(255,214,10,.8);
+    opacity: 0; transition: opacity .15s;
+  }
+  .player-progress-track:hover .player-progress-fill::after { opacity: 1; }
+  .player-times { display: flex; justify-content: space-between; font-size: .7rem; color: #4a7a9b; font-variant-numeric: tabular-nums; }
+
+  /* Controls */
+  .player-controls {
+    padding: .8rem 1.5rem 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: #0a1929; border-bottom: 1px solid #1e3a5f;
+  }
+  .ctrl-group { display: flex; align-items: center; gap: .5rem; }
+  .ctrl-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #0f2038; border: 1px solid #1e3a5f;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: #4a7a9b; flex-shrink: 0;
+    transition: background .15s, border-color .15s, transform .1s;
+  }
+  .ctrl-btn:hover { background: #132540; border-color: #2a5080; transform: scale(1.06); }
+  .ctrl-btn.play-pause {
+    width: 48px; height: 48px;
+    background: var(--y); border: none; color: #08111e;
+    box-shadow: 0 2px 14px rgba(255,214,10,.45);
+  }
+  .ctrl-btn.play-pause:hover { background: var(--y2); box-shadow: 0 4px 22px rgba(255,214,10,.6); transform: scale(1.07); }
+  .ctrl-btn svg, .ctrl-btn.play-pause svg { width: 16px; height: 16px; pointer-events: none; }
+  .volume-group { display: flex; align-items: center; gap: .55rem; }
+  .vol-icon svg { width: 15px; height: 15px; color: #4a7a9b; }
+  .vol-track { width: 68px; height: 4px; background: #1e3a5f; border-radius: 4px; cursor: pointer; }
+  .vol-fill { height: 100%; background: #2a5a80; border-radius: 4px; width: 75%; }
+
+  /* Playlist */
+  .player-playlist { background: #0a1929; }
+  .playlist-header {
+    padding: .6rem 1.5rem;
+    display: flex; align-items: center; gap: .55rem;
+    border-bottom: 1px solid #1e3a5f;
+    font-size: .68rem; font-weight: 800; letter-spacing: .13em;
+    text-transform: uppercase; color: #2a5a80;
+  }
+  .pl-count { background: #0f2038; color: #3a6a90; font-size: .63rem; padding: .13rem .5rem; border-radius: 50px; }
+
+  .pl-item {
+    display: flex; align-items: center; gap: .9rem;
+    padding: .8rem 1.5rem; cursor: pointer;
+    border-bottom: 1px solid #0f2038; border-left: 3px solid transparent;
+    transition: background .15s, border-left-color .15s;
+  }
+  .pl-item:last-child { border-bottom: none; }
+  .pl-item:hover { background: #0f2038; }
+  .pl-item.active { background: rgba(76,201,240,.08); border-left-color: var(--y); }
+
+  .pl-num { font-size: .72rem; color: #2a5a80; width: 18px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .pl-item.active .pl-num { display: none; }
+
+  .pl-mini-eq { display: none; align-items: flex-end; gap: 2px; height: 16px; width: 18px; flex-shrink: 0; }
+  .pl-item.active .pl-mini-eq { display: flex; }
+  .pl-mini-eq span {
+    flex: 1; border-radius: 1px; background: var(--y);
+    animation: eqBounce .7s ease-in-out infinite; transform-origin: bottom;
+  }
+  .pl-mini-eq span:nth-child(1){ height:40%; animation-duration:.7s; }
+  .pl-mini-eq span:nth-child(2){ height:90%; animation-duration:.55s; animation-delay:.15s; }
+  .pl-mini-eq span:nth-child(3){ height:60%; animation-duration:.8s;  animation-delay:.3s; }
+  .player-playlist.paused .pl-mini-eq span { animation-play-state: paused; }
+
+  .pl-song-info { flex: 1; min-width: 0; }
+  .pl-title { font-family: 'Fredoka One', cursive; font-size: .88rem; font-weight: 400; color: #7aa5c8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pl-item.active .pl-title { color: var(--y); }
+  .pl-detail { font-size: .7rem; color: #2a5a80; margin-top: .12rem; }
+  .pl-genre { font-size: .65rem; color: #3a6a90; background: #0f2038; padding: .15rem .48rem; border-radius: 50px; white-space: nowrap; flex-shrink: 0; }
+  .pl-dur { font-size: .7rem; color: #2a5a80; flex-shrink: 0; font-variant-numeric: tabular-nums; min-width: 28px; text-align: right; }
+
+  /* waveform bars (hero) */
+  .sample-wave { display: flex; align-items: center; gap: 2px; height: 28px; margin-top: .85rem; }
+  .sample-wave span { flex: 1; border-radius: 2px; background: linear-gradient(to top, rgba(76,201,240,.3), rgba(255,214,10,.6)); }
+
+  .genre-tag {
+    display: inline-block; margin-top: .65rem;
+    background: rgba(76,201,240,.15); color: var(--y2);
+    font-size: .7rem; font-weight: 700; padding: .22rem .7rem; border-radius: 50px;
+  }
+
+  /* ─── PRICING ─── */
+  #precios { background: var(--black); }
+
+  .pricing-header { text-align: center; margin-bottom: 3.5rem; }
+  .pricing-header .section-sub { margin: .75rem auto 0; }
+
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem; max-width: 720px; margin: 0 auto;
+  }
+
+  .p-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 22px; padding: 2rem;
+    position: relative; transition: transform .2s, box-shadow .2s;
+  }
+  .p-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(76,201,240,.15); }
+
+  .p-card.featured {
+    border-color: var(--y);
+    background: linear-gradient(180deg, rgba(76,201,240,.15) 0%, var(--card) 60%);
+  }
+
+  .popular-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--y); color: var(--black);
+    font-size: .68rem; font-weight: 800; letter-spacing: .08em;
+    text-transform: uppercase; padding: .3rem 1rem; border-radius: 50px; white-space: nowrap;
+  }
+
+  .plan-name {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem; font-weight: 400; margin-bottom: .35rem; color: var(--white);
+  }
+
+  .plan-tagline { font-size: .82rem; color: var(--gray); margin-bottom: 1.5rem; }
+
+  .plan-price {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.8rem; font-weight: 400; color: var(--y); line-height: 1; margin-bottom: .2rem;
+  }
+  .plan-price small { font-size: 1rem; font-weight: 400; color: var(--gray); }
+  .plan-currency { font-size: .78rem; color: var(--gray); margin-bottom: 1.75rem; }
+
+  .price-was {
+    font-size: .95rem; color: var(--gray2);
+    text-decoration: line-through; margin-bottom: .1rem;
+  }
+
+  /* ── ADD-ON CARD ── */
+  .addon-wrap { max-width: 720px; margin: 1.25rem auto 0; }
+
+  .addon-card {
+    display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
+    background: var(--card2);
+    border: 1.5px dashed var(--border);
+    border-radius: var(--r); padding: 1.25rem 1.5rem;
+    transition: border-color .2s;
+  }
+  .addon-card:hover { border-color: var(--blue); }
+
+  .addon-icon { font-size: 2rem; flex-shrink: 0; }
+
+  .addon-info { flex: 1; min-width: 160px; }
+  .addon-name { font-weight: 800; font-size: .95rem; color: var(--white); margin-bottom: .2rem; }
+  .addon-desc { font-size: .8rem; color: var(--gray); line-height: 1.55; }
+
+  .addon-price { text-align: right; flex-shrink: 0; }
+  .addon-price-was { font-size: .8rem; color: var(--gray2); text-decoration: line-through; }
+  .addon-price-now {
+    font-family: 'Fredoka One', cursive; font-weight: 400;
+    font-size: 1.5rem; color: var(--blue);
+  }
+  .addon-price-now small { font-size: .85rem; color: var(--gray); font-family: 'Nunito', sans-serif; }
+
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.75rem; }
+  .plan-features li { display: flex; align-items: flex-start; gap: .55rem; font-size: .875rem; color: rgba(232,244,255,.8); }
+
+  .check-ico {
+    width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+    background: var(--y);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .6rem; color: var(--black); margin-top: 1px;
+  }
+
+  /* Ghost button on dark cards */
+  .p-card .btn-ghost {
+    color: var(--white); border-color: var(--border);
+    display: flex; justify-content: center;
+  }
+  .p-card .btn-ghost:hover { border-color: var(--y); background: rgba(76,201,240,.1); }
+
+  /* ─── NUESTROS CLIENTES ─── */
+  #clientes { overflow: hidden; padding: 5rem 0; background: var(--black); }
+
+  .clientes-header { text-align: center; margin-bottom: 3rem; padding: 0 5%; }
+
+  .clientes-track-wrap {
+    overflow: hidden; position: relative;
+  }
+
+  .clientes-track-wrap::before,
+  .clientes-track-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .clientes-track-wrap::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+  .clientes-track-wrap::after  { right: 0; background: linear-gradient(to left,  var(--black), transparent); }
+
+  .clientes-track {
+    display: flex; gap: 1.25rem;
+    animation: clientes-scroll 28s linear infinite;
+    width: max-content;
+  }
+  .clientes-track-wrap:hover .clientes-track { animation-play-state: paused; }
+
+  @keyframes clientes-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .cliente-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 1.4rem 1.2rem;
+    width: 180px; flex-shrink: 0; text-align: center;
+    transition: border-color .2s, transform .2s;
+  }
+  .cliente-card:hover { border-color: var(--y); transform: translateY(-4px); }
+
+  .cliente-photo {
+    width: 90px; height: 90px; border-radius: 50%;
+    object-fit: cover; object-position: top;
+    border: 3px solid var(--border);
+    margin: 0 auto .9rem; display: block;
+    transition: border-color .2s;
+  }
+  .cliente-card:hover .cliente-photo { border-color: var(--y); }
+
+  .cliente-name {
+    font-family: 'Fredoka One', cursive; font-weight: 400;
+    font-size: 1.05rem; color: var(--white); margin-bottom: .25rem;
+  }
+
+  .cliente-song {
+    font-size: .75rem; color: var(--gray); line-height: 1.5;
+  }
+
+  .cliente-badge {
+    display: inline-block; margin-top: .55rem;
+    background: rgba(255,214,10,.12); color: var(--y2);
+    font-size: .68rem; font-weight: 700; letter-spacing: .05em;
+    padding: .2rem .6rem; border-radius: 50px;
+    text-transform: uppercase;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonios { background: var(--dark); }
+
+  .testi-header { text-align: center; margin-bottom: 3rem; }
+
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; max-width: 1100px; margin: 0 auto;
+  }
+
+  .testi-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 1.75rem;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .testi-card:hover { border-color: var(--y); box-shadow: 0 8px 28px rgba(76,201,240,.2); }
+
+  .testi-stars { color: var(--y2); font-size: .85rem; letter-spacing: 2px; margin-bottom: 1rem; }
+
+  .testi-text { font-size: .9rem; color: var(--gray); line-height: 1.75; margin-bottom: 1.25rem; }
+
+  .testi-author { display: flex; align-items: center; gap: .7rem; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(76,201,240,.2); font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .testi-name { font-size: .875rem; font-weight: 700; color: var(--white); }
+  .testi-detail { font-size: .72rem; color: var(--gray); margin-top: .1rem; }
+
+  /* ─── FAQ ─── */
+  #faq { background: var(--black); }
+
+  .faq-layout {
+    display: grid; grid-template-columns: 1fr 1.8fr;
+    gap: 5rem; max-width: 1100px; margin: 0 auto; align-items: start;
+  }
+
+  .faq-list { display: flex; flex-direction: column; gap: .75rem; }
+
+  .faq-item { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+
+  .faq-q {
+    width: 100%; background: var(--card); color: var(--white); border: none;
+    padding: 1.15rem 1.4rem; display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; font-family: 'Nunito', sans-serif;
+    font-size: .9rem; font-weight: 600; text-align: left; gap: 1rem;
+    transition: background .2s;
+  }
+  .faq-q:hover { background: var(--card2); }
+  .faq-q.open { color: var(--white); }
+
+  .faq-icon { font-size: 1.2rem; flex-shrink: 0; transition: transform .3s; color: var(--gray2); }
+  .faq-q.open .faq-icon { transform: rotate(45deg); color: var(--y); }
+
+  .faq-a {
+    max-height: 0; overflow: hidden; background: rgba(76,201,240,.05);
+    font-size: .875rem; color: var(--gray); line-height: 1.7;
+    transition: max-height .35s ease, padding .35s;
+    padding: 0 1.4rem;
+  }
+  .faq-a.open { max-height: 200px; padding: 1rem 1.4rem; }
+
+  /* ─── CTA FINAL ─── */
+  .cta-final {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 100px 7%; text-align: center; position: relative; overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '♪';
+    position: absolute; top: -1rem; left: 5%;
+    font-size: 14rem; color: rgba(76,201,240,.07);
+    font-family: serif; line-height: 1; pointer-events: none;
+  }
+
+  .cta-final::after {
+    content: '♫';
+    position: absolute; bottom: -2rem; right: 5%;
+    font-size: 12rem; color: rgba(76,201,240,.07);
+    font-family: serif; line-height: 1; pointer-events: none;
+  }
+
+  .cta-final .tag { color: var(--y); opacity: 1; }
+
+  .cta-final h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 400; color: var(--white); letter-spacing: .5px;
+    margin-bottom: .75rem;
+  }
+
+  .cta-final h2 em { color: var(--y); font-style: normal; }
+
+  .cta-final p { font-size: 1.1rem; color: rgba(232,244,255,.6); margin-bottom: 2.25rem; }
+
+  .btn-black {
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: var(--y); color: var(--black);
+    padding: 1rem 2.25rem; border-radius: 50px;
+    font-size: 1rem; font-weight: 800; text-decoration: none;
+    transition: transform .15s, background .2s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(255,214,10,.4);
+  }
+  .btn-black:hover { transform: translateY(-2px); background: var(--y2); box-shadow: 0 8px 32px rgba(255,214,10,.6); }
+  .btn-black svg { width: 22px; height: 22px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black); border-top: 1px solid var(--border);
+    padding: 4rem 7% 2rem;
+  }
+
+  .footer-grid {
+    display: grid; grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 3rem; margin-bottom: 3rem;
+  }
+
+  footer .logo { color: var(--y2); }
+
+  .f-brand-desc {
+    font-size: .875rem; color: rgba(232,244,255,.45);
+    line-height: 1.65; max-width: 240px; margin-top: .75rem;
+  }
+
+  .f-col h4 {
+    font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: rgba(232,244,255,.25); margin-bottom: 1rem;
+  }
+
+  .f-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .f-col a { color: rgba(232,244,255,.45); text-decoration: none; font-size: .875rem; transition: color .2s; }
+  .f-col a:hover { color: var(--white); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border); padding-top: 2rem;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: .78rem; color: rgba(232,244,255,.25); }
+
+  .social-links { display: flex; gap: .75rem; }
+  .social-links a {
+    width: 36px; height: 36px;
+    background: rgba(232,244,255,.05); border: 1px solid var(--border); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: .85rem;
+    text-decoration: none; transition: border-color .2s, background .2s;
+  }
+  .social-links a:hover { border-color: var(--y); background: rgba(76,201,240,.12); }
+
+  /* ─── FLOATING WA ─── */
+  .wa-float {
+    position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 300;
+    display: flex; align-items: center; gap: .55rem;
+    background: #25D366; color: #fff; text-decoration: none;
+    padding: .65rem 1.2rem .65rem .8rem; border-radius: 50px;
+    font-size: .875rem; font-weight: 700;
+    box-shadow: 0 4px 20px rgba(37,211,102,.4);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .wa-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,.55); }
+  .wa-float svg { width: 24px; height: 24px; flex-shrink: 0; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(.8); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── ASTRONAUT SVG ─── */
+  .astronauta-svg {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    filter: drop-shadow(0 24px 48px rgba(76,201,240,.25));
+  }
+
+  /* ─── HERO ASTRO FLOAT ─── */
+  .hero-astro-float {
+    animation: hero-float 4s ease-in-out infinite;
+    filter: drop-shadow(0 20px 40px rgba(76,201,240,.2));
+  }
+  @keyframes hero-float {
+    0%, 100% { transform: translateY(0px)   rotate(-2deg); }
+    50%       { transform: translateY(-18px) rotate(2deg);  }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; padding-top: 100px; }
+    .hero-right { max-width: 480px; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1rem; }
+    .steps-grid::before { display: none; }
+    .occ-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .moment { grid-template-columns: 1fr; gap: 2.5rem; }
+    .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { padding: 90px 5% 60px; }
+    section { padding: 70px 5%; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .faq-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .testi-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-ctas { flex-direction: column; }
+    .btn-wa, .btn-ghost { width: 100%; justify-content: center; }
+    .occ-grid { grid-template-columns: repeat(2, 1fr); }
+    .wa-float span { display: none; }
+    .wa-float { padding: .8rem; border-radius: 50%; }
+    .btn-online { width: 100%; justify-content: center; }
+    .para-todos-inner { grid-template-columns: 1fr; }
+    .ap-grid { grid-template-columns: 1fr; }
+    .modal-row { flex-direction: column; gap: 0; }
+    .modal-actions { flex-direction: column; }
+    .btn-step-back { flex: unset; }
+    .btn-step-next { flex: unset; }
+    .btn-step-submit { flex: unset; }
+    .plan-pill { min-width: 0; flex: 1; }
+    .plan-pill-group { gap: .5rem; }
+    .m-pill { padding: .4rem .75rem; font-size: .8rem; }
+    .wa-float { bottom: 1.25rem; right: 1.25rem; }
+  }
+
+  @media (max-width: 375px) {
+    .hero-ctas { gap: .6rem; }
+    .if-spinner { width: 32px; height: 32px; }
+    .inline-form { padding: 1.5rem 1.1rem; }
+    .plan-pill-price { font-size: .8rem; }
+    .sp-toast { left: .75rem; }
+  }
+
+  /* ─── CURRENCY NOTICE ─── */
+  #currency-notice {
+    display: none; align-items: center; gap: .4rem;
+    justify-content: center; margin-top: .9rem;
+    font-size: .8rem; color: var(--gray2);
+  }
+  #currency-notice.visible { display: flex; }
+  .price-converting { opacity: .4; transition: opacity .3s; }
+
+  /* ─── BTN ONLINE ─── */
+  .btn-online {
+    display: inline-flex; align-items: center; gap: .55rem;
+    background: #4cc9f0; color: #08111e;
+    padding: .9rem 1.75rem; border-radius: 50px;
+    font-size: 1rem; font-weight: 800; font-family: 'Nunito', sans-serif;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(76,201,240,.4);
+  }
+  .btn-online:hover { background: #6dd5f5; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(76,201,240,.55); }
+
+  /* ─── PARA TODOS (adultos) ─── */
+  #para-todos { background: var(--black); }
+  .para-todos-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+  .para-todos-tag { display: flex; align-items: center; gap: .65rem; margin-bottom: .75rem; }
+  .pt-badge {
+    background: rgba(76,201,240,.12); color: #4cc9f0;
+    font-size: .7rem; font-weight: 800; letter-spacing: .1em;
+    text-transform: uppercase; padding: .3rem .8rem; border-radius: 50px;
+    border: 1px solid rgba(76,201,240,.25);
+  }
+  .adultos-pills {
+    display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 2rem;
+  }
+  .adulto-pill {
+    display: inline-flex; align-items: center; gap: .4rem;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--gray); font-size: .82rem; font-weight: 600;
+    padding: .4rem .9rem; border-radius: 50px;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .adulto-pill:hover { border-color: #4cc9f0; color: #4cc9f0; background: rgba(76,201,240,.08); }
+  .ap-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .ap-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 1.1rem 1.25rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color .2s, transform .15s;
+    cursor: pointer;
+  }
+  .ap-card:hover { border-color: #4cc9f0; transform: translateX(4px); }
+  .ap-icon {
+    width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+    background: rgba(76,201,240,.1);
+  }
+  .ap-info { flex: 1; min-width: 0; }
+  .ap-occasion { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #4cc9f0; margin-bottom: .18rem; }
+  .ap-title { font-family: 'Fredoka One', cursive; font-size: 1rem; color: var(--white); }
+  .ap-desc { font-size: .75rem; color: var(--gray2); margin-top: .1rem; }
+  .ap-play-btn {
+    width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(76,201,240,.15); border: 1px solid rgba(76,201,240,.3);
+    color: #4cc9f0; font-size: .9rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, transform .15s;
+  }
+  .ap-play-btn:hover { background: #4cc9f0; color: #08111e; transform: scale(1.1); }
+
+  .step-bar {
+    display: flex; align-items: center; gap: 0;
+    padding: 2rem 0 1.25rem;
+  }
+  .s-dot {
+    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+    background: var(--card); border: 2px solid var(--border);
+    color: var(--gray2); font-size: .75rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .s-dot.active { background: var(--y); border-color: var(--y); color: #08111e; }
+  .s-dot.done { background: rgba(76,201,240,.2); border-color: #4cc9f0; color: #4cc9f0; }
+  .s-line { flex: 1; height: 2px; background: var(--border); }
+  .s-line.done { background: #4cc9f0; }
+  .modal-step { display: none; padding: 0; }
+  .modal-step.active { display: block; }
+  .modal-step h3 { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--white); margin-bottom: 1.25rem; }
+  .mf-label { font-size: .8rem; font-weight: 700; color: var(--gray); margin-bottom: .4rem; letter-spacing: .05em; text-transform: uppercase; }
+  .mf-input {
+    width: 100%; background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: .75rem 1rem; color: var(--white);
+    font-family: 'Nunito', sans-serif; font-size: .9rem; margin-bottom: 1rem;
+    transition: border-color .2s;
+    outline: none;
+  }
+  .mf-input:focus { border-color: #4cc9f0; }
+  select.mf-input { appearance: none; cursor: pointer; }
+  .mf-input::placeholder { color: var(--gray2); }
+  .mf-textarea {
+    width: 100%; background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: .75rem 1rem; color: var(--white);
+    font-family: 'Nunito', sans-serif; font-size: .9rem; margin-bottom: 1rem;
+    min-height: 110px; resize: vertical; outline: none;
+    transition: border-color .2s;
+  }
+  .mf-textarea:focus { border-color: #4cc9f0; }
+  .mf-textarea::placeholder { color: var(--gray2); }
+  .pill-group { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem; }
+  .m-pill {
+    padding: .45rem 1rem; border-radius: 50px; font-size: .82rem; font-weight: 700;
+    background: var(--card); border: 1.5px solid var(--border); color: var(--gray);
+    cursor: pointer; transition: all .15s; font-family: 'Nunito', sans-serif;
+  }
+  .m-pill:hover { border-color: var(--gray); color: var(--white); }
+  .m-pill.sel { background: rgba(255,214,10,.12); border-color: var(--y); color: var(--y); }
+  .m-pill.sel-blue { background: rgba(76,201,240,.12); border-color: #4cc9f0; color: #4cc9f0; }
+  .modal-row { display: flex; gap: .75rem; }
+  .modal-row .mf-input { margin-bottom: 0; }
+  .modal-actions { display: flex; gap: .75rem; margin-top: .5rem; }
+  .btn-step-back {
+    flex: 1; padding: .8rem; border-radius: 50px; font-family: 'Nunito', sans-serif;
+    font-size: .9rem; font-weight: 700; cursor: pointer;
+    background: transparent; border: 1.5px solid var(--border); color: var(--gray);
+    transition: border-color .2s, color .2s;
+  }
+  .btn-step-back:hover { border-color: var(--gray); color: var(--white); }
+  .btn-step-next {
+    flex: 2; padding: .8rem; border-radius: 50px; font-family: 'Nunito', sans-serif;
+    font-size: .95rem; font-weight: 800; cursor: pointer;
+    background: var(--y); border: none; color: #08111e;
+    box-shadow: 0 4px 18px rgba(255,214,10,.35);
+    transition: background .2s, transform .15s;
+  }
+  .btn-step-next:hover { background: var(--y2); transform: translateY(-1px); }
+  .btn-step-submit {
+    flex: 2; padding: .8rem; border-radius: 50px; font-family: 'Nunito', sans-serif;
+    font-size: .95rem; font-weight: 800; cursor: pointer;
+    background: var(--blue); border: none; color: var(--black);
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    box-shadow: 0 4px 18px rgba(76,201,240,.35);
+    transition: background .2s, transform .15s;
+  }
+  .btn-step-submit:hover { background: #70d8f8; transform: translateY(-1px); }
+  .if-verificar-box {
+    background: rgba(76,201,240,.07); border: 1.5px solid rgba(76,201,240,.3);
+    border-radius: 14px; padding: 1.25rem 1.25rem 1rem; margin-top: .5rem;
+  }
+  .plan-pill-group { display: flex; gap: .75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .plan-pill {
+    flex: 1; min-width: 130px; padding: .9rem 1rem; border-radius: 14px; text-align: center;
+    background: var(--card); border: 1.5px solid var(--border); cursor: pointer;
+    transition: all .15s;
+  }
+  .plan-pill:hover { border-color: var(--gray); }
+  .plan-pill.sel { border-color: var(--y); background: rgba(255,214,10,.08); }
+  .plan-pill-name { font-family: 'Fredoka One', cursive; font-size: 1rem; color: var(--white); }
+  .plan-pill-price { font-size: .75rem; color: var(--gray); margin-top: .15rem; }
+  .plan-pill.sel .plan-pill-name { color: var(--y); }
+  .sp-toast {
+    position: fixed; bottom: 80px; left: 1.25rem; z-index: 400;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: .65rem .95rem;
+    display: flex; align-items: center; gap: .65rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,.4);
+    max-width: calc(100vw - 2.5rem); pointer-events: none;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .sp-toast.show { opacity: 1; transform: translateY(0); }
+  .sp-avatar {
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--y), #ff9a3c);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; font-weight: 800; color: var(--black);
+  }
+  .sp-text { font-size: .82rem; line-height: 1.4; color: var(--white); }
+  .sp-text strong { color: var(--y); }
+  .sp-time { font-size: .75rem; color: var(--gray); margin-top: .1rem; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<nav>
+  <a class="logo" href="#">lalala music!</a>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#ocasiones">Ocasiones</a></li>
+    <li><a href="#ejemplos">Ejemplos</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li>
+      <a class="nav-wa" href="#inline-form">
+        Crear mi canción
+      </a>
+    </li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu(this)">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <!-- stars field -->
+  <span class="hero-star" style="top:5%;left:8%;width:2px;height:2px;--op:.6;--td:3.2s;--dl:0s"></span>
+  <span class="hero-star" style="top:12%;left:18%;width:3px;height:3px;--op:.8;--td:2.5s;--dl:.4s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:8%;left:32%;width:2px;height:2px;--op:.5;--td:4s;--dl:1s"></span>
+  <span class="hero-star" style="top:18%;left:44%;width:1.5px;height:1.5px;--op:.4;--td:3.8s;--dl:.7s"></span>
+  <span class="hero-star" style="top:7%;left:58%;width:3px;height:3px;--op:.7;--td:2.8s;--dl:0s"></span>
+  <span class="hero-star" style="top:14%;left:70%;width:2px;height:2px;--op:.5;--td:3.5s;--dl:.6s"></span>
+  <span class="hero-star" style="top:20%;left:80%;width:4px;height:4px;--op:.7;--td:2.2s;--dl:1s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:28%;left:92%;width:2px;height:2px;--op:.5;--td:3.3s;--dl:.3s"></span>
+  <span class="hero-star" style="top:30%;left:5%;width:3px;height:3px;--op:.6;--td:3.1s;--dl:1.5s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:35%;left:25%;width:1.5px;height:1.5px;--op:.4;--td:4.2s;--dl:.9s"></span>
+  <span class="hero-star" style="top:38%;left:65%;width:2px;height:2px;--op:.5;--td:2.7s;--dl:.3s"></span>
+  <span class="hero-star" style="top:42%;left:85%;width:3px;height:3px;--op:.6;--td:3.6s;--dl:1.2s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:50%;left:12%;width:2px;height:2px;--op:.5;--td:3.4s;--dl:.8s"></span>
+  <span class="hero-star" style="top:55%;left:38%;width:3px;height:3px;--op:.7;--td:2.9s;--dl:.2s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:58%;left:75%;width:2px;height:2px;--op:.5;--td:3.7s;--dl:1.6s"></span>
+  <span class="hero-star" style="top:62%;left:90%;width:2px;height:2px;--op:.4;--td:2.4s;--dl:.5s"></span>
+  <span class="hero-star" style="top:68%;left:3%;width:3px;height:3px;--op:.6;--td:3s;--dl:1.1s"></span>
+  <span class="hero-star" style="top:72%;left:20%;width:1.5px;height:1.5px;--op:.4;--td:4.1s;--dl:.6s"></span>
+  <span class="hero-star" style="top:75%;left:50%;width:2px;height:2px;--op:.5;--td:3.3s;--dl:1.8s"></span>
+  <span class="hero-star" style="top:80%;left:78%;width:3px;height:3px;--op:.7;--td:2.6s;--dl:.4s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:88%;left:15%;width:2px;height:2px;--op:.5;--td:3.9s;--dl:.9s"></span>
+  <span class="hero-star" style="top:92%;left:60%;width:2px;height:2px;--op:.4;--td:2.3s;--dl:1.3s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:3%;left:85%;width:2px;height:2px;--op:.6;--td:3.6s;--dl:.1s"></span>
+  <span class="hero-star" style="top:45%;left:48%;width:1.5px;height:1.5px;--op:.3;--td:4.5s;--dl:2s"></span>
+  <!-- extra stars -->
+  <span class="hero-star" style="top:2%;left:25%;width:2px;height:2px;--op:.5;--td:3.1s;--dl:.3s"></span>
+  <span class="hero-star" style="top:4%;left:40%;width:3px;height:3px;--op:.7;--td:2.4s;--dl:.9s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:9%;left:50%;width:1.5px;height:1.5px;--op:.4;--td:4.3s;--dl:1.5s"></span>
+  <span class="hero-star" style="top:16%;left:5%;width:2.5px;height:2.5px;--op:.6;--td:2.9s;--dl:.2s"></span>
+  <span class="hero-star" style="top:22%;left:30%;width:2px;height:2px;--op:.5;--td:3.7s;--dl:1.1s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:25%;left:55%;width:1.5px;height:1.5px;--op:.3;--td:4.8s;--dl:.7s"></span>
+  <span class="hero-star" style="top:32%;left:73%;width:2px;height:2px;--op:.5;--td:3.2s;--dl:1.4s"></span>
+  <span class="hero-star" style="top:40%;left:15%;width:3px;height:3px;--op:.6;--td:2.7s;--dl:.5s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:47%;left:94%;width:2px;height:2px;--op:.4;--td:3.5s;--dl:1.8s"></span>
+  <span class="hero-star" style="top:52%;left:28%;width:2px;height:2px;--op:.5;--td:4s;--dl:.4s"></span>
+  <span class="hero-star" style="top:60%;left:44%;width:3px;height:3px;--op:.6;--td:2.6s;--dl:1.2s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:65%;left:62%;width:1.5px;height:1.5px;--op:.4;--td:3.9s;--dl:.6s"></span>
+  <span class="hero-star" style="top:70%;left:85%;width:2px;height:2px;--op:.5;--td:3.3s;--dl:1s"></span>
+  <span class="hero-star" style="top:77%;left:7%;width:2.5px;height:2.5px;--op:.6;--td:2.8s;--dl:.8s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:83%;left:35%;width:2px;height:2px;--op:.4;--td:4.2s;--dl:1.6s"></span>
+  <span class="hero-star" style="top:90%;left:72%;width:3px;height:3px;--op:.6;--td:3s;--dl:.3s"></span>
+  <span class="hero-star" style="top:95%;left:90%;width:2px;height:2px;--op:.4;--td:3.6s;--dl:1.9s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:96%;left:45%;width:1.5px;height:1.5px;--op:.3;--td:4.4s;--dl:.1s"></span>
+  <span class="hero-star" style="top:1%;left:65%;width:2px;height:2px;--op:.5;--td:3.8s;--dl:2.1s"></span>
+  <span class="hero-star" style="top:11%;left:88%;width:2.5px;height:2.5px;--op:.6;--td:2.3s;--dl:.9s;background:#ffd60a"></span>
+  <!-- extra stars batch 2 -->
+  <span class="hero-star" style="top:6%;left:55%;width:2px;height:2px;--op:.5;--td:3.4s;--dl:.6s"></span>
+  <span class="hero-star" style="top:13%;left:76%;width:1.5px;height:1.5px;--op:.4;--td:4.6s;--dl:1.3s"></span>
+  <span class="hero-star" style="top:19%;left:62%;width:3px;height:3px;--op:.7;--td:2.5s;--dl:.1s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:23%;left:10%;width:2px;height:2px;--op:.5;--td:3.8s;--dl:1.7s"></span>
+  <span class="hero-star" style="top:27%;left:84%;width:2.5px;height:2.5px;--op:.6;--td:3.1s;--dl:.4s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:33%;left:48%;width:1.5px;height:1.5px;--op:.3;--td:4.9s;--dl:2.2s"></span>
+  <span class="hero-star" style="top:37%;left:35%;width:2px;height:2px;--op:.5;--td:2.7s;--dl:.8s"></span>
+  <span class="hero-star" style="top:43%;left:70%;width:3px;height:3px;--op:.65;--td:3.3s;--dl:1.5s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:48%;left:57%;width:1.5px;height:1.5px;--op:.4;--td:4.1s;--dl:.3s"></span>
+  <span class="hero-star" style="top:54%;left:2%;width:2.5px;height:2.5px;--op:.6;--td:2.9s;--dl:1s"></span>
+  <span class="hero-star" style="top:57%;left:88%;width:2px;height:2px;--op:.5;--td:3.6s;--dl:.7s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:63%;left:30%;width:1.5px;height:1.5px;--op:.3;--td:4.7s;--dl:1.9s"></span>
+  <span class="hero-star" style="top:67%;left:53%;width:3px;height:3px;--op:.65;--td:2.4s;--dl:.2s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:71%;left:40%;width:2px;height:2px;--op:.5;--td:3.5s;--dl:1.1s"></span>
+  <span class="hero-star" style="top:74%;left:95%;width:2.5px;height:2.5px;--op:.55;--td:3s;--dl:.5s"></span>
+  <span class="hero-star" style="top:79%;left:22%;width:1.5px;height:1.5px;--op:.4;--td:4.4s;--dl:1.6s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:84%;left:67%;width:2px;height:2px;--op:.5;--td:3.2s;--dl:.9s"></span>
+  <span class="hero-star" style="top:87%;left:48%;width:3px;height:3px;--op:.6;--td:2.6s;--dl:.4s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:91%;left:10%;width:2px;height:2px;--op:.45;--td:3.9s;--dl:1.2s"></span>
+  <span class="hero-star" style="top:93%;left:80%;width:1.5px;height:1.5px;--op:.35;--td:4.3s;--dl:.6s"></span>
+  <span class="hero-star" style="top:97%;left:30%;width:2px;height:2px;--op:.4;--td:3.1s;--dl:1.4s;background:#4cc9f0"></span>
+  <span class="hero-star" style="top:15%;left:96%;width:2px;height:2px;--op:.5;--td:3.7s;--dl:.3s"></span>
+  <span class="hero-star" style="top:44%;left:1%;width:2.5px;height:2.5px;--op:.55;--td:2.8s;--dl:1.7s;background:#ffd60a"></span>
+  <span class="hero-star" style="top:85%;left:90%;width:2px;height:2px;--op:.45;--td:4s;--dl:.8s"></span>
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="badge-pulse"></span>
+      Músicos reales · Para los más chiquitos · menos de 1 hora
+    </div>
+
+    <h1>
+      Una canción <em>única</em><br />
+      para tu <em>peque</em> o para quien quieras.
+    </h1>
+
+    <p class="hero-sub">
+      Cuéntanos su historia — nosotros la convertimos en una
+      <strong>canción original y personalizada</strong> que nunca van a olvidar.
+    </p>
+
+    <p style="margin-bottom:.75rem;font-size:.8rem;color:var(--gray);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+      <span style="color:#4ade80">✓</span> 100% satisfacción garantizada
+      <span style="opacity:.3">·</span>
+      <span style="color:#4ade80">✓</span> 3 revisiones
+      <span style="opacity:.3">·</span>
+      <span style="color:#4ade80">✓</span> Entrega en &lt;1 hora
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-wa" href="#inline-form">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Quiero crear mi canción
+      </a>
+      <a class="btn-ghost"
+        href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20crear%20una%20canci%C3%B3n%20personalizada%20%F0%9F%8E%B5"
+        target="_blank" rel="noopener"
+        style="background:#25D366;border-color:#25D366;color:#fff;font-size:1rem;padding:.9rem 1.6rem;box-shadow:0 4px 18px rgba(37,211,102,.4)"
+        onmouseover="this.style.background='#20b858';this.style.borderColor='#20b858';this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.background='#25D366';this.style.borderColor='#25D366';this.style.transform=''">
+        <svg viewBox="0 0 32 32" fill="none" style="width:20px;height:20px;flex-shrink:0"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.48.648 4.81 1.782 6.834L2 30l7.334-1.764A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z" fill="#25D366"/><path d="M22.5 19.5c-.333-.167-1.966-.97-2.27-1.08-.303-.11-.524-.167-.745.167-.22.333-.855 1.08-1.048 1.302-.193.22-.387.248-.72.083-.333-.167-1.406-.518-2.678-1.653-.99-.883-1.66-1.973-1.853-2.307-.193-.333-.02-.513.145-.68.149-.148.333-.387.5-.58.167-.193.222-.333.333-.554.111-.22.055-.413-.028-.58-.083-.167-.745-1.797-1.02-2.46-.27-.647-.544-.56-.745-.57-.193-.01-.414-.012-.635-.012-.22 0-.58.083-.883.413C11.55 11.15 10.5 12.15 10.5 14.2s1.05 3.9 1.196 4.168c.147.268 2.064 3.15 5 4.418.699.302 1.245.482 1.67.617.702.223 1.341.192 1.845.116.563-.084 1.733-.708 1.977-1.393.245-.684.245-1.27.172-1.393-.073-.123-.268-.197-.6-.363z" fill="#fff"/></svg>
+        ¡La quiero crear por WhatsApp!
+      </a>
+    </div>
+  </div>
+
+  <!-- SONG CARD -->
+  <div class="hero-right" style="position:relative;">
+    <img src="images/Gemini_Generated_Image_sxo1qvsxo1qvsxo1.png" alt="" aria-hidden="true"
+      class="hero-astro-float"
+      style="position:absolute; bottom:-60px; right:-60px; width:100%; opacity:0.3; pointer-events:none; z-index:0;">
+
+    <div class="song-card" style="position:relative;z-index:1;">
+      <div class="song-card-top">
+        <div class="album-art">🎵</div>
+        <div class="song-meta">
+          <div class="song-occasion">Cumpleaños</div>
+          <div class="song-title">Aylani, rayito de sol</div>
+          <div class="song-artist">Para Aylani · Pop infantil</div>
+        </div>
+        <button class="play-btn-big" onclick="togglePlay()" aria-label="Reproducir"></button>
+      </div>
+      <div class="waveform-player">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="bar"></span><span class="bar"></span>
+      </div>
+      <div class="song-time">
+        <span id="hero-time-cur">0:00</span>
+        <span id="hero-time-tot">3:24</span>
+      </div>
+    </div>
+
+    <div class="hero-stats" style="position:relative;z-index:1;">
+      <div class="stat-box">
+        <div class="stat-num">+2,400</div>
+        <div class="stat-lbl">canciones creadas</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-lbl">calificación</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">&lt;1h</div>
+        <div class="stat-lbl">entrega</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ TRUST STRIP ════════════ -->
+<div class="trust-strip">
+  <div class="trust-ticker">
+    <span class="trust-item is-price">🎵 Tu canción desde <strong class="ticker-price-val">&nbsp;$10 USD</strong></span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg> 100% satisfacción garantizada</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Músicos profesionales certificados</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Entrega en menos de 1 hora</span>
+    <span class="trust-sep">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="trust-item is-price">🎵 Tu canción desde <strong class="ticker-price-val">&nbsp;$10 USD</strong></span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg> 100% satisfacción garantizada</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Músicos profesionales certificados</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Entrega en menos de 1 hora</span>
+    <span class="trust-sep">·</span>
+  </div>
+</div>
+
+<!-- ════════════ EMOTIONAL SECTION ════════════ -->
+<section class="moment reveal" id="experiencia">
+  <div>
+    <p class="tag">Creemos tu canción</p>
+    <h2>En <em>minutos</em> lista<br />para sorprenderle.</h2>
+    <p class="section-sub" style="margin-top:.75rem">
+      Cuéntanos su historia y nosotros la convertimos en una canción única, con su nombre, su personalidad y todo lo que lo hace especial.
+    </p>
+    <div style="margin-top:2rem">
+      <a class="btn-wa" style="font-size:.9rem;padding:.8rem 1.5rem" href="#inline-form">
+        Crear la canción ahora →
+      </a>
+    </div>
+  </div>
+
+  <div class="inline-form reveal" id="inline-form">
+    <div class="step-bar" style="padding:0 0 1.25rem">
+      <span class="s-dot active" id="if-sd1">1</span>
+      <span class="s-line" id="if-sl1"></span>
+      <span class="s-dot" id="if-sd2">2</span>
+      <span class="s-line" id="if-sl2"></span>
+      <span class="s-dot" id="if-sd3">3</span>
+      <span class="s-line" id="if-sl3"></span>
+      <span class="s-dot" id="if-sd4">4</span>
+    </div>
+
+    <!-- PASO 1 -->
+    <div class="modal-step active" id="if-step-1">
+      <h3>¿Para quién es la canción?</h3>
+      <p class="mf-label">Tu nombre <span style="color:var(--y)">*</span></p>
+      <input id="if-tunombre" class="mf-input" type="text" placeholder="¿Cómo te llamas?" maxlength="50" />
+      <p class="mf-label">Tu WhatsApp <span style="color:var(--y)">*</span></p>
+      <div style="margin-bottom:1rem">
+        <input id="if-telefono" class="mf-input" type="tel" placeholder="55 1234 5678" style="margin-bottom:0" />
+      </div>
+      <p class="mf-label">¿Para quién es? <span style="color:var(--y)">*</span></p>
+      <input id="if-nombre" class="mf-input" type="text" placeholder="Ej: Sofía, papá, Ana y Roberto…" maxlength="60" />
+      <div class="modal-row" style="margin-bottom:1rem">
+        <div style="flex:1">
+          <p class="mf-label">Edad</p>
+          <input id="if-edad" class="mf-input" type="text" placeholder="Ej: 6 años, 30 años…" maxlength="20" />
+        </div>
+        <div style="flex:1">
+          <p class="mf-label">Relación</p>
+          <input id="if-relacion" class="mf-input" type="text" placeholder="Ej: mi hija, mi novia…" maxlength="40" />
+        </div>
+      </div>
+      <p class="mf-label">Ocasión <span style="color:var(--y)">*</span></p>
+      <div class="pill-group">
+        <button class="m-pill sel" onclick="ifPill(this,'if-ocasion','Ninguna en específico')">🎵 Ninguna en específico</button>
+        <button class="m-pill" onclick="ifPill(this,'if-ocasion','Cumpleaños')">🎂 Cumpleaños</button>
+        <button class="m-pill" onclick="ifPill(this,'if-ocasion','Quinceañera')">👑 Quinceañera</button>
+        <button class="m-pill" onclick="ifPill(this,'if-ocasion','Graduación')">🎓 Graduación</button>
+        <button class="m-pill" onclick="ifPill(this,'if-ocasion','Boda')">💍 Boda</button>
+        <button class="m-pill" onclick="ifPill(this,'if-ocasion','Aniversario')">❤️ Aniversario</button>
+        <button class="m-pill" onclick="ifPill(this,'if-ocasion','San Valentín')">🌹 San Valentín</button>
+        <button class="m-pill" onclick="ifPill(this,'if-ocasion','Baby shower')">👶 Baby shower</button>
+        <button class="m-pill" onclick="ifPillOtro(this)">✨ Otro</button>
+      </div>
+      <input id="if-ocasion-otro" class="mf-input" type="text" placeholder="¿Cuál ocasión?" maxlength="60" style="display:none;margin-top:.25rem" oninput="ifData['if-ocasion']=this.value" />
+      <div id="if-cumple-extra" style="display:none;margin-top:.75rem">
+        <p class="mf-label">¿Cuántos años cumple?</p>
+        <input id="if-edad-cumple" class="mf-input" type="text" placeholder="Ej: 15, 30, 50…" maxlength="20" style="margin-bottom:.6rem" />
+        <p class="mf-label">¿Incluir la edad en la canción?</p>
+        <div class="pill-group">
+          <button class="m-pill" onclick="ifPill(this,'if-edad-incluir','Sí')">Sí, inclúyela</button>
+          <button class="m-pill" onclick="ifPill(this,'if-edad-incluir','No')">No, mejor no</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-step-next" onclick="ifNext(1)">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="modal-step" id="if-step-2">
+      <h3>¿Qué estilo musical?</h3>
+      <p class="mf-label">Género</p>
+      <select id="if-estilo-select" class="mf-input" onchange="ifEstiloChange(this)">
+        <option value="">— Selecciona un género —</option>
+        <optgroup label="Infantil / Especial">
+          <option value="Pop infantil">🌈 Pop infantil</option>
+          <option value="Canción de cuna">🌙 Canción de cuna</option>
+          <option value="Reggae relajado">🌿 Reggae relajado</option>
+        </optgroup>
+        <optgroup label="Popular">
+          <option value="Pop">🎵 Pop</option>
+          <option value="Pop latino">🎤 Pop latino</option>
+          <option value="Balada">🎶 Balada romántica</option>
+          <option value="Romántica">💖 Romántica</option>
+          <option value="R&B / Soul">🎙️ R&B / Soul</option>
+          <option value="Electrónica / Dance">🎧 Electrónica / Dance</option>
+          <option value="K-pop">🎌 K-pop</option>
+          <option value="Rap">🎤 Rap</option>
+        </optgroup>
+        <optgroup label="Norteño / Ranchera">
+          <option value="Norteño / Ranchera">🤠 Norteño / Ranchera</option>
+          <option value="Banda">🎺 Banda</option>
+          <option value="Mariachi">🎻 Mariachi</option>
+        </optgroup>
+        <optgroup label="Latina">
+          <option value="Cumbia">🪗 Cumbia</option>
+          <option value="Salsa">🕺 Salsa</option>
+          <option value="Reggaetón">🔥 Reggaetón</option>
+          <option value="Tropical / Merengue">🌴 Tropical / Merengue</option>
+          <option value="Bachata">💃 Bachata</option>
+          <option value="Bolero">🌹 Bolero</option>
+          <option value="Vallenato">🪗 Vallenato</option>
+          <option value="Reggae">🌿 Reggae</option>
+        </optgroup>
+        <optgroup label="Acústico / Folk">
+          <option value="Folk acústico">🎸 Folk / Acústico</option>
+          <option value="Canción de autor">✍️ Canción de autor</option>
+          <option value="Country">🤍 Country</option>
+        </optgroup>
+        <optgroup label="Rock">
+          <option value="Rock pop">🎸 Rock pop</option>
+          <option value="Rock en español">🤘 Rock en español</option>
+        </optgroup>
+        <option value="Sorpréndeme">🎲 Sorpréndeme</option>
+        <option value="otro">✨ Otro (escribir)</option>
+      </select>
+      <input id="if-estilo-otro" class="mf-input" type="text" placeholder="Describe el estilo que quieres…" maxlength="60" style="display:none;margin-top:.5rem" oninput="ifData['if-estilo']=this.value" />
+      <p class="mf-label">Artista de referencia <span style="font-weight:400;text-transform:none;font-size:.78rem">(opcional)</span></p>
+      <input id="if-artista" class="mf-input" type="text" placeholder="Ej: Cepillín, Kany García, Calibre 50…" maxlength="60" />
+      <p class="mf-label">Emoción de la canción</p>
+      <div class="pill-group" id="if-emocion-pills">
+        <button class="m-pill" onclick="ifPill(this,'if-emocion','Alegre')">🎉 Alegre</button>
+        <button class="m-pill" onclick="ifPill(this,'if-emocion','Emotivo')">🥹 Emotivo</button>
+        <button class="m-pill" onclick="ifPill(this,'if-emocion','Romántico')">💕 Romántico</button>
+        <button class="m-pill" onclick="ifPill(this,'if-emocion','Divertido')">😄 Divertido</button>
+        <button class="m-pill" onclick="ifPill(this,'if-emocion','Nostálgico')">🌙 Nostálgico</button>
+        <button class="m-pill" onclick="ifPill(this,'if-emocion','Tierno')">🩷 Tierno</button>
+        <button class="m-pill" onclick="ifPill(this,'if-emocion','Épico')">🔥 Épico</button>
+      </div>
+
+      <p class="mf-label">Voz para cantar</p>
+      <div class="pill-group" id="if-voz-pills">
+        <button class="m-pill" onclick="ifPill(this,'if-voz','Hombre')">👨 Hombre</button>
+        <button class="m-pill" onclick="ifPill(this,'if-voz','Mujer')">👩 Mujer</button>
+        <button class="m-pill" onclick="ifPill(this,'if-voz','Niño / Niña')">👦 Niño / Niña</button>
+        <button class="m-pill sel" onclick="ifPill(this,'if-voz','Sin preferencia')">🎤 Sin preferencia</button>
+      </div>
+
+      <p class="mf-label">Plan</p>
+      <div class="plan-pill-group">
+        <div class="plan-pill" onclick="ifPill(this,'if-plan','Essential')">
+          <div class="plan-pill-name">Essential</div>
+          <div class="plan-pill-price">$10 USD · canción + 1 gratis</div>
+        </div>
+        <div class="plan-pill" onclick="ifPill(this,'if-plan','Premium')">
+          <div class="plan-pill-name">Premium ⭐</div>
+          <div class="plan-pill-price">$15 USD · + video lyric</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-step-back" onclick="ifGoStep(1)">← Atrás</button>
+        <button class="btn-step-next" onclick="ifNext(2)">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- PASO 4 -->
+    <!-- PASO 3 -->
+    <div class="modal-step" id="if-step-3">
+      <h3>Cuéntanos su historia</h3>
+      <p class="mf-label">¿Qué la hace especial? <span style="color:var(--y)">*</span></p>
+      <textarea id="if-historia" class="mf-textarea" placeholder="Apodos, momentos, cosas que ama, anécdotas…"></textarea>
+
+      <p class="mf-label">Dedicatoria <span style="font-weight:400;text-transform:none;font-size:.78rem">(opcional)</span></p>
+      <div style="background:rgba(255,214,10,.06);border:1px solid rgba(255,214,10,.2);border-radius:10px;padding:.6rem .85rem;margin-bottom:.5rem;font-size:.78rem;color:var(--y2);line-height:1.5">
+        ✨ Lo que escribas aquí aparecerá <strong>exactamente así</strong> en la canción — puede ser una frase, un apodo especial, un "te amo", lo que tú quieras.
+      </div>
+      <textarea id="if-dedicatoria" class="mf-textarea" placeholder='Ej: "Para mi Sofía hermosa, de tu mami que te adora"' style="min-height:80px"></textarea>
+
+      <p class="mf-label">¿Incluir tu nombre en la canción?</p>
+      <div class="pill-group" style="margin-bottom:1rem">
+        <button class="m-pill" onclick="ifPill(this,'if-nombre-incluir','Sí')">Sí, inclúyelo</button>
+        <button class="m-pill" onclick="ifPill(this,'if-nombre-incluir','No')">No, mejor no</button>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-step-back" onclick="ifGoStep(2)">← Atrás</button>
+        <button class="btn-step-next" id="btn-generar" onclick="ifGenerarLetra()">
+          ✨ Generar letra
+        </button>
+      </div>
+    </div>
+
+    <!-- PASO 5: Letra generada -->
+    <!-- PASO 4 -->
+    <div class="modal-step" id="if-step-4">
+      <h3>Tu letra está lista 🎵</h3>
+
+      <div id="if-generar-loading" style="display:none;text-align:center;padding:2rem 0">
+        <div class="if-spinner"></div>
+        <p style="color:var(--gray);margin-top:1rem;font-size:.9rem">Componiendo tu canción…</p>
+      </div>
+
+      <div id="if-generar-result" style="display:none">
+        <div style="background:rgba(255,214,10,.06);border:1px solid rgba(255,214,10,.2);border-radius:10px;padding:.6rem .85rem;margin-bottom:.75rem;font-size:.78rem;color:var(--y2);line-height:1.5">
+          ✏️ Puedes editar la letra directamente antes de enviarla.
+        </div>
+        <textarea id="if-letra" class="mf-textarea" style="min-height:320px;font-size:.85rem;line-height:1.7;font-family:monospace"></textarea>
+
+        <div id="if-genero-recordatorio" style="background:rgba(76,201,240,.08);border:1px solid rgba(76,201,240,.25);border-radius:10px;padding:.65rem 1rem;margin-bottom:1rem;font-size:.82rem;color:var(--blue);display:flex;align-items:center;gap:.5rem">
+          🎸 <span>Género seleccionado: <strong id="if-genero-label"></strong></span>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-step-back" onclick="ifGoStep(3)">← Editar info</button>
+          <button class="btn-step-submit" onclick="ifMostrarVerificacion()">
+            ✨ ¡Quiero hacerla música!
+          </button>
+        </div>
+      </div>
+
+      <!-- VERIFICACIÓN -->
+      <div id="if-verificar" style="display:none">
+        <div class="if-verificar-box">
+          <p style="font-weight:800;font-size:1rem;margin-bottom:.4rem">📱 Verifica tu número</p>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:.85rem">A este número en unos minutos enviaremos tu canción:</p>
+          <p id="if-tel-display" style="font-size:1.3rem;font-weight:800;color:var(--blue);text-align:center;margin-bottom:1rem"></p>
+          <div class="modal-actions" style="margin-top:0">
+            <button class="btn-step-back" onclick="document.getElementById('if-verificar').style.display='none'; document.getElementById('if-generar-result').style.display='block'">← Corregir</button>
+            <button class="btn-step-submit" onclick="ifConfirmarEnvio()">✅ Confirmar y enviar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LÍMITE DIARIO -->
+      <div id="if-limitada" style="display:none;text-align:center;padding:1.5rem 0">
+        <p style="font-size:2rem;margin-bottom:.5rem">🎵</p>
+        <p style="font-weight:800;font-size:1rem;color:var(--white);margin-bottom:.4rem">Ya creaste tu canción de hoy</p>
+        <p style="color:var(--gray);font-size:.88rem;margin-bottom:1.2rem">Cada canción es única y especial. Escríbenos para escucharla, revisarla o pedir otra.</p>
+        <a href="https://wa.me/521XXXXXXXXXX" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;font-weight:800;font-size:.92rem;padding:.7rem 1.4rem;border-radius:50px;text-decoration:none">
+          <svg viewBox="0 0 32 32" fill="none" style="width:18px;height:18px"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.48.648 4.81 1.782 6.834L2 30l7.334-1.764A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z" fill="#25D366"/><path d="M22.5 19.5c-.333-.167-1.966-.97-2.27-1.08-.303-.11-.524-.167-.745.167-.22.333-.855 1.08-1.048 1.302-.193.22-.387.248-.72.083-.333-.167-1.406-.518-2.678-1.653-.99-.883-1.66-1.973-1.853-2.307-.193-.333-.02-.513.145-.68.149-.148.333-.387.5-.58.167-.193.222-.333.333-.554.111-.22.055-.413-.028-.58-.083-.167-.745-1.797-1.02-2.46-.27-.647-.544-.56-.745-.57-.193-.01-.414-.012-.635-.012-.22 0-.58.083-.883.413C11.55 11.15 10.5 12.15 10.5 14.2s1.05 3.9 1.196 4.168c.147.268 2.064 3.15 5 4.418.699.302 1.245.482 1.67.617.702.223 1.341.192 1.845.116.563-.084 1.733-.708 1.977-1.393.245-.684.245-1.27.172-1.393-.073-.123-.268-.197-.6-.363z" fill="#fff"/></svg>
+          Hablar con nosotros
+        </a>
+      </div>
+
+      <!-- ÉXITO -->
+      <div id="if-enviado" style="display:none;text-align:center;padding:1.5rem 0">
+        <p style="font-size:2.5rem;margin-bottom:.5rem">🎵</p>
+        <p style="font-weight:800;font-size:1.1rem;color:var(--white);margin-bottom:.4rem">¡Listo!</p>
+        <p style="color:var(--gray);font-size:.92rem">En unos minutos enviaremos tu canción al número confirmado.</p>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<!-- ════════════ HOW IT WORKS ════════════ -->
+<section id="como-funciona" style="position:relative; overflow:hidden;">
+  <img src="images/astro1-removebg-preview.png" alt="" aria-hidden="true"
+    style="position:absolute; bottom:-30px; right:-20px; width:499px;
+           opacity:0.12; pointer-events:none; z-index:0; filter:drop-shadow(0 0 40px rgba(76,201,240,.3));">
+  <div class="steps-header reveal">
+    <p class="tag">El proceso</p>
+    <h2>Tu canción en <em>4 pasos</em></h2>
+    <p class="section-sub">No necesitas saber nada de música. Solo cuéntanos todo sobre tu peque.</p>
+  </div>
+
+  <div class="steps-grid reveal">
+    <div class="step-item">
+      <div class="step-circle">1</div>
+      <h3>Cuéntanos todo</h3>
+      <p>Escríbenos por WhatsApp con los detalles de la persona o el momento que quieres celebrar.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-circle">2</div>
+      <h3>Elige el estilo</h3>
+      <p>Pop, balada, cumbia, folk, jazz… o el artista de referencia que quieras. Tú decides el mood.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-circle">3</div>
+      <h3>Músicos al trabajo</h3>
+      <p>Compositores y cantantes profesionales crean tu canción única. 100% original, 100% tuya.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-circle">4</div>
+      <h3>Recibe y sorprende</h3>
+      <p>En menos de 1 hora recibes tu MP3 listo para regalar, compartir y guardar para siempre.</p>
+    </div>
+  </div>
+
+  <div class="inline-cta reveal">
+    <a class="btn-wa" href="#inline-form">
+      Quiero crear mi canción →
+    </a>
+  </div>
+</section>
+
+<!-- ════════════ OCCASIONS ════════════ -->
+<section id="ocasiones">
+  <div class="occ-layout">
+    <div class="reveal">
+      <p class="tag">Para cada momento especial</p>
+      <h2>¿Cuál es la ocasión<br />de tu <em>peque</em>?</h2>
+      <p class="section-sub" style="margin-top:.75rem">
+        Cada etapa en la vida de tu niño merece una canción propia. Escoge la tuya y empezamos hoy.
+      </p>
+      <div style="margin-top:2rem">
+        <a class="btn-wa" style="font-size:.9rem;padding:.8rem 1.5rem"
+          href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20crear%20una%20canci%C3%B3n%20personalizada%20%F0%9F%8E%B5"
+          target="_blank" rel="noopener">
+          <svg viewBox="0 0 32 32" fill="none" style="width:18px;height:18px"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.48.648 4.81 1.782 6.834L2 30l7.334-1.764A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z" fill="#25D366"/><path d="M22.5 19.5c-.333-.167-1.966-.97-2.27-1.08-.303-.11-.524-.167-.745.167-.22.333-.855 1.08-1.048 1.302-.193.22-.387.248-.72.083-.333-.167-1.406-.518-2.678-1.653-.99-.883-1.66-1.973-1.853-2.307-.193-.333-.02-.513.145-.68.149-.148.333-.387.5-.58.167-.193.222-.333.333-.554.111-.22.055-.413-.028-.58-.083-.167-.745-1.797-1.02-2.46-.27-.647-.544-.56-.745-.57-.193-.01-.414-.012-.635-.012-.22 0-.58.083-.883.413C11.55 11.15 10.5 12.15 10.5 14.2s1.05 3.9 1.196 4.168c.147.268 2.064 3.15 5 4.418.699.302 1.245.482 1.67.617.702.223 1.341.192 1.845.116.563-.084 1.733-.708 1.977-1.393.245-.684.245-1.27.172-1.393-.073-.123-.268-.197-.6-.363z" fill="#fff"/></svg>
+          Comenzar ahora
+        </a>
+      </div>
+    </div>
+
+    <div class="occ-grid reveal">
+      <div class="occ-card"><div class="occ-icon">🎂</div><div class="occ-name">Cumpleaños</div></div>
+      <div class="occ-card"><div class="occ-icon">🎒</div><div class="occ-name">Primer día de kinder</div></div>
+      <div class="occ-card"><div class="occ-icon">🙏</div><div class="occ-name">Primera comunión</div></div>
+      <div class="occ-card"><div class="occ-icon">👑</div><div class="occ-name">Quinceañera</div></div>
+      <div class="occ-card"><div class="occ-icon">🎓</div><div class="occ-name">Graduación</div></div>
+      <div class="occ-card"><div class="occ-icon">👶</div><div class="occ-name">Baby shower</div></div>
+      <div class="occ-card"><div class="occ-icon">🏫</div><div class="occ-name">Fin de curso</div></div>
+      <div class="occ-card"><div class="occ-icon">⭐</div><div class="occ-name">Ocasión especial</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ MUSIC PLAYER ════════════ -->
+<section id="ejemplos">
+  <div class="player-section-header reveal">
+    <p class="tag">Canciones reales</p>
+    <h2>Así suenan las canciones <em>de los peques</em></h2>
+    <p class="section-sub">Canciones que creamos para niños reales. Cada una tiene su nombre, su historia y su magia.</p>
+  </div>
+
+  <div class="player-wrap reveal">
+
+    <!-- ── Title bar ── -->
+    <div class="player-bar">
+      <div class="player-bar-name">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3v10.55A4 4 0 1011 17V7h4V3H9z"/></svg>
+        lalala music! — Reproductor
+      </div>
+      <div class="player-win-btns">
+        <span style="background:#333"></span>
+        <span style="background:#333"></span>
+        <span style="background:var(--menta)"></span>
+      </div>
+    </div>
+
+    <!-- ── Now playing ── -->
+    <div class="player-np">
+      <div class="player-art" id="player-art" style="background:linear-gradient(135deg,#091525,#0c2040)">🌟</div>
+      <div class="player-song-info">
+        <div class="player-occ" id="player-occ">Cumpleaños</div>
+        <div class="player-title" id="player-title">Aylani, rayito de sol</div>
+        <div class="player-recipient" id="player-recipient">Para Aylani</div>
+        <span class="player-genre-tag" id="player-genre">Pop infantil</span>
+      </div>
+      <div class="eq-wrap" id="eq-wrap">
+        <div class="eq-b"></div><div class="eq-b"></div><div class="eq-b"></div>
+        <div class="eq-b"></div><div class="eq-b"></div><div class="eq-b"></div>
+        <div class="eq-b"></div>
+      </div>
+    </div>
+
+    <!-- ── Progress bar ── -->
+    <div class="player-progress-area">
+      <div class="player-progress-track" id="progress-track" onclick="seekTo(event, this)">
+        <div class="player-progress-fill" id="player-fill"></div>
+      </div>
+      <div class="player-times">
+        <span id="player-time-cur">0:00</span>
+        <span id="player-time-tot">3:24</span>
+      </div>
+    </div>
+
+    <!-- ── Controls ── -->
+    <div class="player-controls">
+      <div class="ctrl-group">
+        <button class="ctrl-btn" onclick="prevSong()" title="Anterior">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+        </button>
+        <button class="ctrl-btn play-pause" id="play-btn" onclick="togglePlay()" title="Reproducir / Pausar">
+          <svg id="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button class="ctrl-btn" onclick="nextSong()" title="Siguiente">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18 14.5 12 6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+        </button>
+      </div>
+      <div class="volume-group">
+        <span class="vol-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        </span>
+        <div class="vol-track"><div class="vol-fill"></div></div>
+      </div>
+    </div>
+
+    <!-- ── Playlist ── -->
+    <div class="player-playlist" id="player-playlist">
+      <div class="playlist-header">
+        Lista de reproducción
+        <span class="pl-count">5 canciones</span>
+      </div>
+
+      <div class="pl-item active" data-index="0" onclick="selectSong(0)">
+        <span class="pl-num">01</span>
+        <div class="pl-mini-eq"><span></span><span></span><span></span></div>
+        <div class="pl-song-info">
+          <div class="pl-title">Aylani, rayito de sol</div>
+          <div class="pl-detail">Para Aylani · Cumpleaños</div>
+        </div>
+        <span class="pl-genre">Pop infantil</span>
+        <span class="pl-dur">🌟</span>
+      </div>
+
+      <div class="pl-item" data-index="1" onclick="selectSong(1)">
+        <span class="pl-num">02</span>
+        <div class="pl-mini-eq"><span></span><span></span><span></span></div>
+        <div class="pl-song-info">
+          <div class="pl-title">Luces de colores</div>
+          <div class="pl-detail">Canción de cumpleaños · Pop</div>
+        </div>
+        <span class="pl-genre">Pop divertido</span>
+        <span class="pl-dur">🎈</span>
+      </div>
+
+      <div class="pl-item" data-index="2" onclick="selectSong(2)">
+        <span class="pl-num">03</span>
+        <div class="pl-mini-eq"><span></span><span></span><span></span></div>
+        <div class="pl-song-info">
+          <div class="pl-title">María Celeste, dulce amor</div>
+          <div class="pl-detail">Para María Celeste · Aniversario</div>
+        </div>
+        <span class="pl-genre">Balada romántica</span>
+        <span class="pl-dur">🌹</span>
+      </div>
+
+      <div class="pl-item" data-index="3" onclick="selectSong(3)">
+        <span class="pl-num">04</span>
+        <div class="pl-mini-eq"><span></span><span></span><span></span></div>
+        <div class="pl-song-info">
+          <div class="pl-title">Suena el acordeón</div>
+          <div class="pl-detail">Celebración familiar · Norteño</div>
+        </div>
+        <span class="pl-genre">Norteño</span>
+        <span class="pl-dur">🎉</span>
+      </div>
+
+      <div class="pl-item" data-index="4" onclick="selectSong(4)">
+        <span class="pl-num">05</span>
+        <div class="pl-mini-eq"><span></span><span></span><span></span></div>
+        <div class="pl-song-info">
+          <div class="pl-title">Daniela Marcela, mi luz</div>
+          <div class="pl-detail">Para Daniela Marcela · Baby shower</div>
+        </div>
+        <span class="pl-genre">Canción de cuna</span>
+        <span class="pl-dur">👶</span>
+      </div>
+    </div>
+
+  </div><!-- /player-wrap -->
+
+  <div class="inline-cta reveal" style="margin-top:3rem">
+    <a class="btn-wa" href="#inline-form">
+      Crear mi propia canción →
+    </a>
+  </div>
+</section>
+
+<!-- ════════════ PARA TODOS (adultos) ════════════ -->
+<section id="para-todos">
+  <div class="para-todos-inner reveal">
+    <div>
+      <div class="para-todos-tag">
+        <span class="tag" style="margin-bottom:0">No solo para niños</span>
+        <span class="pt-badge">También para adultos</span>
+      </div>
+      <h2>Para cada historia,<br /><em>sin importar la edad.</em></h2>
+      <p class="section-sub" style="margin-top:.75rem">
+        Bodas, aniversarios, cumpleaños de papá o mamá, San Valentín, homenajes… Si existe una historia especial, nosotros la convertimos en una canción que se queda para siempre.
+      </p>
+      <div class="adultos-pills" style="margin-top:1.5rem">
+        <span class="adulto-pill">💍 Bodas</span>
+        <span class="adulto-pill">❤️ Aniversario</span>
+        <span class="adulto-pill">🌹 San Valentín</span>
+        <span class="adulto-pill">🎂 Cumpleaños adultos</span>
+        <span class="adulto-pill">👨‍👩‍👧 Familia</span>
+        <span class="adulto-pill">💼 Empresarial</span>
+        <span class="adulto-pill">🎓 Graduación</span>
+        <span class="adulto-pill">🌟 Homenaje</span>
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem">
+        <a class="btn-wa" style="font-size:.9rem;padding:.8rem 1.5rem" href="#inline-form">
+          Crear online →
+        </a>
+        <a class="btn-ghost" style="font-size:.9rem;padding:.8rem 1.5rem;background:#25D366;border-color:#25D366;color:#fff;box-shadow:0 4px 14px rgba(37,211,102,.4);display:inline-flex;align-items:center;gap:.5rem"
+          href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20crear%20una%20canci%C3%B3n%20para%20un%20adulto%20%F0%9F%8E%B5"
+          target="_blank" rel="noopener"
+          onmouseover="this.style.background='#20b858';this.style.borderColor='#20b858';this.style.transform='translateY(-2px)'"
+          onmouseout="this.style.background='#25D366';this.style.borderColor='#25D366';this.style.transform=''">
+          <svg viewBox="0 0 32 32" fill="none" style="width:18px;height:18px;flex-shrink:0"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.48.648 4.81 1.782 6.834L2 30l7.334-1.764A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z" fill="#25D366"/><path d="M22.5 19.5c-.333-.167-1.966-.97-2.27-1.08-.303-.11-.524-.167-.745.167-.22.333-.855 1.08-1.048 1.302-.193.22-.387.248-.72.083-.333-.167-1.406-.518-2.678-1.653-.99-.883-1.66-1.973-1.853-2.307-.193-.333-.02-.513.145-.68.149-.148.333-.387.5-.58.167-.193.222-.333.333-.554.111-.22.055-.413-.028-.58-.083-.167-.745-1.797-1.02-2.46-.27-.647-.544-.56-.745-.57-.193-.01-.414-.012-.635-.012-.22 0-.58.083-.883.413C11.55 11.15 10.5 12.15 10.5 14.2s1.05 3.9 1.196 4.168c.147.268 2.064 3.15 5 4.418.699.302 1.245.482 1.67.617.702.223 1.341.192 1.845.116.563-.084 1.733-.708 1.977-1.393.245-.684.245-1.27.172-1.393-.073-.123-.268-.197-.6-.363z" fill="#fff"/></svg>
+          ¡La quiero crear por WhatsApp!
+        </a>
+      </div>
+    </div>
+
+    <div class="ap-grid reveal">
+      <div class="ap-card" onclick="selectSong(2); document.getElementById('ejemplos').scrollIntoView({behavior:'smooth'})">
+        <div class="ap-icon">🌹</div>
+        <div class="ap-info">
+          <div class="ap-occasion">Aniversario · Balada romántica</div>
+          <div class="ap-title">María Celeste, dulce amor</div>
+          <div class="ap-desc">Para María Celeste</div>
+        </div>
+        <button class="ap-play-btn" aria-label="Escuchar">▶</button>
+      </div>
+      <div class="ap-card" onclick="selectSong(3); document.getElementById('ejemplos').scrollIntoView({behavior:'smooth'})">
+        <div class="ap-icon">🎉</div>
+        <div class="ap-info">
+          <div class="ap-occasion">Celebración · Norteño / Ranchera</div>
+          <div class="ap-title">Suena el acordeón</div>
+          <div class="ap-desc">Celebración familiar</div>
+        </div>
+        <button class="ap-play-btn" aria-label="Escuchar">▶</button>
+      </div>
+      <div class="ap-card" onclick="selectSong(4); document.getElementById('ejemplos').scrollIntoView({behavior:'smooth'})">
+        <div class="ap-icon">👶</div>
+        <div class="ap-info">
+          <div class="ap-occasion">Baby shower · Canción de cuna</div>
+          <div class="ap-title">Daniela Marcela, mi luz</div>
+          <div class="ap-desc">Para Daniela Marcela</div>
+        </div>
+        <button class="ap-play-btn" aria-label="Escuchar">▶</button>
+      </div>
+      <div class="ap-card" style="border-color:rgba(76,201,240,.25);background:rgba(76,201,240,.05);cursor:pointer" onclick="location.href='#inline-form'">
+        <div class="ap-icon" style="background:rgba(76,201,240,.15)">✨</div>
+        <div class="ap-info">
+          <div class="ap-occasion" style="color:var(--gray)">Tu canción</div>
+          <div class="ap-title" style="color:#4cc9f0">¿Cuál es tu historia?</div>
+          <div class="ap-desc">Cuéntanosla y la hacemos canción</div>
+        </div>
+        <button class="ap-play-btn" style="background:rgba(76,201,240,.2);color:#4cc9f0" aria-label="Crear">+</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PRICING ════════════ -->
+<section id="precios">
+  <div class="pricing-header reveal">
+    <p class="tag">Planes</p>
+    <h2>Simple, sin <em>sorpresas</em></h2>
+    <p class="section-sub">Elige y en minutos ya estamos trabajando en tu canción.</p>
+    <div id="currency-notice" style="display:none;margin-top:.9rem;font-size:.8rem;color:var(--gray2);display:none;align-items:center;gap:.4rem;justify-content:center">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <span id="currency-notice-text"></span>
+    </div>
+  </div>
+
+  <div class="pricing-grid reveal">
+    <div class="p-card">
+      <div class="plan-name">Essential</div>
+      <div class="plan-tagline">Todo lo que necesitas para un regalo increíble</div>
+      <div class="price-was"><span id="price-essential-orig">$20 USD</span></div>
+      <div class="plan-price" id="price-essential">$10<small> USD</small></div>
+      <div class="plan-currency">por canción · entrega en menos de 1 hora</div>
+      <ul class="plan-features">
+        <li><span class="check-ico">✓</span> Canción 100% personalizada</li>
+        <li><span class="check-ico">✓</span> 1 canción gratis incluida</li>
+        <li><span class="check-ico">✓</span> 3 revisiones incluidas</li>
+        <li><span class="check-ico">✓</span> Satisfacción garantizada</li>
+        <li><span class="check-ico">✓</span> MP3 alta calidad</li>
+        <li><span class="check-ico">✓</span> Letra 100% personalizada</li>
+      </ul>
+      <a class="btn-ghost"
+        href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20el%20plan%20Essential%20%F0%9F%8E%B5"
+        target="_blank" rel="noopener">
+        Elegir Essential
+      </a>
+    </div>
+
+    <div class="p-card featured">
+      <div class="popular-badge">Más popular</div>
+      <div class="plan-name">Premium</div>
+      <div class="plan-tagline">Todo lo del Essential más video para redes</div>
+      <div class="price-was"><span id="price-premium-orig">$30 USD</span></div>
+      <div class="plan-price" id="price-premium">$15<small> USD</small></div>
+      <div class="plan-currency">por canción · entrega en menos de 1 hora</div>
+      <ul class="plan-features">
+        <li><span class="check-ico">✓</span> Canción 100% personalizada</li>
+        <li><span class="check-ico">✓</span> 1 canción gratis incluida</li>
+        <li><span class="check-ico">✓</span> 3 revisiones incluidas</li>
+        <li><span class="check-ico">✓</span> Satisfacción garantizada</li>
+        <li><span class="check-ico">✓</span> MP3 + WAV alta calidad</li>
+        <li><span class="check-ico">✓</span> Letra 100% personalizada</li>
+        <li><span class="check-ico">✓</span> Video lyric para redes sociales</li>
+      </ul>
+      <a class="btn-wa"
+        href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20el%20plan%20Premium%20%F0%9F%8E%B5"
+        target="_blank" rel="noopener" style="justify-content:center">
+        Elegir Premium
+      </a>
+    </div>
+  </div>
+
+  <div class="addon-wrap reveal">
+    <div class="addon-card">
+      <div class="addon-icon">🎸</div>
+      <div class="addon-info">
+        <div class="addon-name">Add-on: Segunda versión en otro estilo</div>
+        <div class="addon-desc">Misma historia, diferente género musical. Recibe una segunda versión de tu canción en el estilo que elijas — pop, ranchera, balada, lo que quieras.</div>
+      </div>
+      <div class="addon-price">
+        <div class="addon-price-was"><span id="price-addon-orig">$10 USD</span></div>
+        <div class="addon-price-now" id="price-addon">$5 <small>USD</small></div>
+      </div>
+      <a class="btn-ghost" href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20agregar%20una%20segunda%20versi%C3%B3n%20en%20otro%20estilo%20a%20mi%20canci%C3%B3n%20%F0%9F%8E%B5" target="_blank" rel="noopener" style="flex-shrink:0">
+        Agregar al pedido
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ NUESTROS CLIENTES ════════════ -->
+<section id="clientes">
+  <div class="clientes-header reveal">
+    <p class="tag">Nuestros clientes</p>
+    <h2>Niños que ya tienen<br/>su <em>canción favorita</em></h2>
+  </div>
+
+  <div class="clientes-track-wrap">
+    <div class="clientes-track">
+      <!-- set 1 -->
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy.png" alt="Emilio" />
+        <div class="cliente-name">Emilio</div>
+        <div class="cliente-song">Su nana de primer añito, con su nombre y todo</div>
+        <span class="cliente-badge">🎂 1er año</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy2.png" alt="Santiago" />
+        <div class="cliente-name">Santiago</div>
+        <div class="cliente-song">Canción de cuna para darle la bienvenida al mundo</div>
+        <span class="cliente-badge">🌙 Recién nacido</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/girl1.png" alt="Valentina" />
+        <div class="cliente-name">Valentina</div>
+        <div class="cliente-song">Pop dulce para celebrar sus primeros dos añitos</div>
+        <span class="cliente-badge">🎀 Cumpleaños</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy3.png" alt="Mateo" />
+        <div class="cliente-name">Mateo</div>
+        <div class="cliente-song">Una canción llena de risas que mamá le canta en el coche</div>
+        <span class="cliente-badge">⭐ Especial</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/girl2.png" alt="Sofía" />
+        <div class="cliente-name">Sofía</div>
+        <div class="cliente-song">Su canción de verano con todos los colores del arcoíris</div>
+        <span class="cliente-badge">🌈 Baby shower</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy4.png" alt="Lucas" />
+        <div class="cliente-name">Lucas</div>
+        <div class="cliente-song">Nana suave para dormirse mirando las estrellas</div>
+        <span class="cliente-badge">🌙 Canción de cuna</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy5.png" alt="Samuel" />
+        <div class="cliente-name">Samuel</div>
+        <div class="cliente-song">Regalo de baby shower que lo acompañará toda la vida</div>
+        <span class="cliente-badge">🎁 Baby shower</span>
+      </div>
+      <!-- set 2 (duplicate for seamless loop) -->
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy.png" alt="Emilio" />
+        <div class="cliente-name">Emilio</div>
+        <div class="cliente-song">Su nana de primer añito, con su nombre y todo</div>
+        <span class="cliente-badge">🎂 1er año</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy2.png" alt="Santiago" />
+        <div class="cliente-name">Santiago</div>
+        <div class="cliente-song">Canción de cuna para darle la bienvenida al mundo</div>
+        <span class="cliente-badge">🌙 Recién nacido</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/girl1.png" alt="Valentina" />
+        <div class="cliente-name">Valentina</div>
+        <div class="cliente-song">Pop dulce para celebrar sus primeros dos añitos</div>
+        <span class="cliente-badge">🎀 Cumpleaños</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy3.png" alt="Mateo" />
+        <div class="cliente-name">Mateo</div>
+        <div class="cliente-song">Una canción llena de risas que mamá le canta en el coche</div>
+        <span class="cliente-badge">⭐ Especial</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/girl2.png" alt="Sofía" />
+        <div class="cliente-name">Sofía</div>
+        <div class="cliente-song">Su canción de verano con todos los colores del arcoíris</div>
+        <span class="cliente-badge">🌈 Baby shower</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy4.png" alt="Lucas" />
+        <div class="cliente-name">Lucas</div>
+        <div class="cliente-song">Nana suave para dormirse mirando las estrellas</div>
+        <span class="cliente-badge">🌙 Canción de cuna</span>
+      </div>
+      <div class="cliente-card">
+        <img class="cliente-photo" src="clientes/boy5.png" alt="Samuel" />
+        <div class="cliente-name">Samuel</div>
+        <div class="cliente-song">Regalo de baby shower que lo acompañará toda la vida</div>
+        <span class="cliente-badge">🎁 Baby shower</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ TESTIMONIALS ════════════ -->
+<section id="testimonios">
+  <div class="testi-header reveal">
+    <p class="tag">Lo que dicen los papás</p>
+    <h2>Momentos que <em>no se olvidan</em></h2>
+  </div>
+
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"La puse en la fiesta de mi hijo y cuando escuchó su nombre en la canción, se quedó boquiabierto. La puso en repetición todo el camino a casa. ¡Me lo agradeció mil veces!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">👦</div>
+        <div>
+          <div class="testi-name">Karla Mendoza</div>
+          <div class="testi-detail">Plan Premium · Cumpleaños de Emilio, 6 años</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Le hicimos la canción a mi hija para su primera comunión. Ella y sus amigas lloraron de emoción. Fue el regalo más especial de toda la ceremonia."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">🙏</div>
+        <div>
+          <div class="testi-name">Patricia Torres</div>
+          <div class="testi-detail">Plan Premium · Primera comunión de Valeria</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Mi hija tiene 3 años y cada mañana pide 'su canción'. Incluimos sus personajes favoritos y ya se la sabe de memoria. ¡Vale cada peso!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">🎂</div>
+        <div>
+          <div class="testi-name">Roberto y Ana</div>
+          <div class="testi-detail">Plan Essential · Cumpleaños de Mía, 3 años</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"El proceso fue super fácil por WhatsApp. En menos de 1 hora tenía la canción lista para la fiesta. Mi sobrino todavía la pone en TikTok y tiene miles de visitas."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">🎸</div>
+        <div>
+          <div class="testi-name">Andrés Vega</div>
+          <div class="testi-detail">Plan Premium · Cumpleaños de Diego, 8 años</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Encargamos una canción para la graduación de kinder de mi hija. Los papás del salón estaban grabando cuando la pusieron. Todos querían saber cómo lo hicimos."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">🎓</div>
+        <div>
+          <div class="testi-name">Beatriz Ríos</div>
+          <div class="testi-detail">Plan Premium · Graduación kinder de Lucía</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"La hicimos para la quinceañera de mi hija con su historia completa. Cuando la escuchó se puso a llorar. Me dijo que fue el mejor regalo de su vida."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">👑</div>
+        <div>
+          <div class="testi-name">Lorena Fuentes</div>
+          <div class="testi-detail">Plan Premium · Quinceañera de Luna</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FAQ ════════════ -->
+<section id="faq">
+  <div class="faq-layout">
+    <div class="reveal">
+      <p class="tag">Dudas frecuentes</p>
+      <h2>Todo lo que<br />quieres <em>saber</em></h2>
+      <p class="section-sub" style="margin-top:.75rem">¿Algo más? Escríbenos directo por WhatsApp.</p>
+      <div style="margin-top:2rem">
+        <a class="btn-wa" style="font-size:.875rem;padding:.8rem 1.4rem"
+          href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20lalala%20music%21%20%F0%9F%8E%B5"
+          target="_blank" rel="noopener">
+          <svg viewBox="0 0 32 32" fill="none" style="width:18px;height:18px"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.48.648 4.81 1.782 6.834L2 30l7.334-1.764A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z" fill="#25D366"/><path d="M22.5 19.5c-.333-.167-1.966-.97-2.27-1.08-.303-.11-.524-.167-.745.167-.22.333-.855 1.08-1.048 1.302-.193.22-.387.248-.72.083-.333-.167-1.406-.518-2.678-1.653-.99-.883-1.66-1.973-1.853-2.307-.193-.333-.02-.513.145-.68.149-.148.333-.387.5-.58.167-.193.222-.333.333-.554.111-.22.055-.413-.028-.58-.083-.167-.745-1.797-1.02-2.46-.27-.647-.544-.56-.745-.57-.193-.01-.414-.012-.635-.012-.22 0-.58.083-.883.413C11.55 11.15 10.5 12.15 10.5 14.2s1.05 3.9 1.196 4.168c.147.268 2.064 3.15 5 4.418.699.302 1.245.482 1.67.617.702.223 1.341.192 1.845.116.563-.084 1.733-.708 1.977-1.393.245-.684.245-1.27.172-1.393-.073-.123-.268-.197-.6-.363z" fill="#fff"/></svg>
+          Preguntar por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo funciona exactamente el proceso?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Nos escribes por WhatsApp con los detalles de la persona o el momento a celebrar, elegimos juntos el estilo musical, y nuestros músicos crean una canción 100% original. La recibes en MP3 de alta calidad en el tiempo del plan que elegiste.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto tiempo tarda en llegar mi canción?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Todos nuestros planes tienen entrega en menos de 1 hora una vez que nos compartes los detalles de la canción.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué pasa si no me gusta el resultado?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Cada plan incluye revisiones. Si después de las revisiones no quedas satisfecho, te hacemos un reembolso completo. Tu satisfacción es nuestra prioridad — y la razón por la que tenemos 4.9 estrellas.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo elegir el género musical?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Sí. Pop, balada, cumbia, reggaetón, folk, jazz, norteño, tropical y más. También puedes darnos un artista de referencia para que el estilo sea lo más cercano a lo que imaginas.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿La canción es mía para siempre?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Sí. Los planes Esencial y Premium incluyen derechos de uso personal — para siempre. Si necesitas derechos comerciales (publicidad, eventos pagados), el plan Empresarial los incluye.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo pedirla como regalo sorpresa?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Por supuesto. Nos cuentas todo sobre el destinatario y te la enviamos a ti. Tú decides cuándo y cómo entregársela.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA FINAL ════════════ -->
+<section class="cta-final reveal">
+  <p class="tag">No esperes más</p>
+  <h2>Crea la canción que tu peque<br /><em>nunca va a olvidar.</em></h2>
+  <p>El próximo mensaje que nos envíes puede ser el inicio<br />del regalo más mágico que tu niño vaya a recibir este año.</p>
+  <a class="btn-black" href="#inline-form">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:22px;height:22px"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    Crear mi canción ahora
+  </a>
+  <a href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20crear%20una%20canci%C3%B3n%20personalizada%20%F0%9F%8E%B5"
+    target="_blank" rel="noopener"
+    style="display:inline-block;margin-top:1rem;font-size:.85rem;color:rgba(232,244,255,.45);text-decoration:none;transition:color .2s"
+    onmouseover="this.style.color='rgba(232,244,255,.8)'" onmouseout="this.style.color='rgba(232,244,255,.45)'">
+    o contactar por WhatsApp →
+  </a>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a class="logo" href="#">lalala music!</a>
+      <p class="f-brand-desc">Canciones originales y personalizadas hechas por músicos profesionales para los momentos más mágicos en la vida de tu peque.</p>
+    </div>
+    <div class="f-col">
+      <h4>Servicio</h4>
+      <ul>
+        <li><a href="#como-funciona">¿Cómo funciona?</a></li>
+        <li><a href="#ejemplos">Ejemplos</a></li>
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Ocasiones</h4>
+      <ul>
+        <li><a href="#ocasiones">Bodas</a></li>
+        <li><a href="#ocasiones">Cumpleaños</a></li>
+        <li><a href="#ocasiones">Aniversarios</a></li>
+        <li><a href="#ocasiones">Empresarial</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/521XXXXXXXXXX" target="_blank" rel="noopener">💬 WhatsApp</a></li>
+        <li><a href="#">📸 Instagram</a></li>
+        <li><a href="#">🎵 TikTok</a></li>
+        <li><a href="#">▶️ YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 lalala music! · Todos los derechos reservados.</p>
+    <div class="social-links">
+      <a href="#" title="Instagram">📸</a>
+      <a href="#" title="TikTok">🎵</a>
+      <a href="https://wa.me/521XXXXXXXXXX" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+      <a href="#" title="YouTube">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════ FLOATING WA ════════════ -->
+<a class="wa-float"
+  href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20crear%20una%20canci%C3%B3n%20personalizada%20%F0%9F%8E%B5"
+  target="_blank" rel="noopener">
+  <svg viewBox="0 0 32 32" fill="none"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.48.648 4.81 1.782 6.834L2 30l7.334-1.764A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z" fill="#fff"/><path d="M22.5 19.5c-.333-.167-1.966-.97-2.27-1.08-.303-.11-.524-.167-.745.167-.22.333-.855 1.08-1.048 1.302-.193.22-.387.248-.72.083-.333-.167-1.406-.518-2.678-1.653-.99-.883-1.66-1.973-1.853-2.307-.193-.333-.02-.513.145-.68.149-.148.333-.387.5-.58.167-.193.222-.333.333-.554.111-.22.055-.413-.028-.58-.083-.167-.745-1.797-1.02-2.46-.27-.647-.544-.56-.745-.57-.193-.01-.414-.012-.635-.012-.22 0-.58.083-.883.413C11.55 11.15 10.5 12.15 10.5 14.2s1.05 3.9 1.196 4.168c.147.268 2.064 3.15 5 4.418.699.302 1.245.482 1.67.617.702.223 1.341.192 1.845.116.563-.084 1.733-.708 1.977-1.393.245-.684.245-1.27.172-1.393-.073-.123-.268-.197-.6-.363z" fill="#25D366"/></svg>
+  <span>Crear mi canción</span>
+</a>
+
+<script>
+  // ══════════════════════════════════════
+  //  SCROLL REVEAL
+  // ══════════════════════════════════════
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // ══════════════════════════════════════
+  //  FAQ ACCORDION
+  // ══════════════════════════════════════
+  function toggleFaq(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-q.open').forEach(b => {
+      b.classList.remove('open'); b.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) { btn.classList.add('open'); ans.classList.add('open'); }
+  }
+
+  // ══════════════════════════════════════
+  //  MOBILE MENU
+  // ══════════════════════════════════════
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const isOpen = links.style.display === 'flex';
+    links.style.cssText = isOpen ? '' :
+      'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#08111e;padding:1.5rem 5%;border-bottom:1px solid #1e3a5f;gap:1.25rem;z-index:199';
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      const links = document.querySelector('.nav-links');
+      if (window.innerWidth <= 768) links.style.cssText = '';
+    });
+  });
+
+  // ══════════════════════════════════════
+  //  MUSIC PLAYER
+  // ══════════════════════════════════════
+  const SONGS = [
+    { title: 'Aylani, rayito de sol',      recipient: 'Para Aylani',          occasion: 'Cumpleaños',   genre: 'Pop infantil',    icon: '🌟', bg: 'linear-gradient(135deg,#091525,#0c2040)', file: 'Aylani Delgado, rayito de sol.mp3' },
+    { title: 'Luces de colores',           recipient: 'Canción de cumpleaños', occasion: 'Cumpleaños',  genre: 'Pop divertido',   icon: '🎈', bg: 'linear-gradient(135deg,#0a1525,#0f2a20)', file: 'Luces de colores brillan para ti.mp3' },
+    { title: 'María Celeste, dulce amor',  recipient: 'Para María Celeste',   occasion: 'Aniversario',  genre: 'Balada romántica',icon: '🌹', bg: 'linear-gradient(135deg,#200818,#381028)', file: 'María Celeste, dulce amor.mp3' },
+    { title: 'Suena el acordeón',          recipient: 'Celebración familiar', occasion: 'Celebración',  genre: 'Norteño/Ranchera',icon: '🎉', bg: 'linear-gradient(135deg,#1a1008,#2e1e0a)', file: 'Suena el acordeón en esta celebración.mp3' },
+    { title: 'Daniela Marcela, mi luz',    recipient: 'Para Daniela Marcela', occasion: 'Baby shower',  genre: 'Canción de cuna', icon: '👶', bg: 'linear-gradient(135deg,#082030,#0e2e48)', file: 'Daniela Marcela, mi luz al nacer,.mp3' },
+  ];
+
+  // ══════════════════════════════════════
+  //  MUSIC PLAYER (audio real)
+  // ══════════════════════════════════════
+  let curIdx  = 0;
+  let playing = false;
+  const audio = new Audio();
+  const $ = id => document.getElementById(id);
+
+  function fmt(s) {
+    const t = isFinite(s) ? Math.floor(s) : 0;
+    return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0');
+  }
+
+  function renderPlayer() {
+    const s = SONGS[curIdx];
+    $('player-art').textContent       = s.icon;
+    $('player-art').style.background  = s.bg;
+    $('player-occ').textContent       = s.occasion;
+    $('player-title').textContent     = s.title;
+    $('player-recipient').textContent = s.recipient;
+    $('player-genre').textContent     = s.genre;
+    $('player-time-cur').textContent  = '0:00';
+    $('player-time-tot').textContent  = '–:––';
+    $('player-fill').style.width      = '0%';
+    document.querySelectorAll('.pl-item').forEach((el, i) => {
+      el.classList.toggle('active', i === curIdx);
+    });
+  }
+
+  function setPlayState(state) {
+    playing = state;
+    $('play-icon').innerHTML = playing
+      ? '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'
+      : '<path d="M8 5v14l11-7z"/>';
+    $('eq-wrap').classList.toggle('paused', !playing);
+    $('player-playlist').classList.toggle('paused', !playing);
+  }
+
+  function loadSong(idx, autoplay) {
+    curIdx = idx;
+    renderPlayer();
+    audio.src = 'canciones_muestra/' + encodeURIComponent(SONGS[idx].file);
+    audio.load();
+    if (autoplay) { audio.play().catch(() => {}); setPlayState(true); }
+    else { setPlayState(false); }
+  }
+
+  function togglePlay() {
+    if (audio.paused) {
+      if (!audio.src || audio.src === window.location.href) loadSong(curIdx, true);
+      else { audio.play().catch(() => {}); setPlayState(true); }
+    } else {
+      audio.pause(); setPlayState(false);
+    }
+  }
+
+  function selectSong(idx) { loadSong(idx, true); }
+
+  function nextSong() { loadSong((curIdx + 1) % SONGS.length, playing); }
+
+  function prevSong() {
+    if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+    loadSong((curIdx - 1 + SONGS.length) % SONGS.length, playing);
+  }
+
+  function seekTo(e, el) {
+    if (!isFinite(audio.duration)) return;
+    const rect = el.getBoundingClientRect();
+    const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    audio.currentTime = pct * audio.duration;
+  }
+
+  audio.addEventListener('timeupdate', () => {
+    if (!isFinite(audio.duration)) return;
+    const pct = (audio.currentTime / audio.duration * 100).toFixed(1);
+    $('player-fill').style.width      = pct + '%';
+    $('player-time-cur').textContent  = fmt(audio.currentTime);
+    $('player-time-tot').textContent  = fmt(audio.duration);
+  });
+
+  audio.addEventListener('ended', nextSong);
+  audio.addEventListener('error', () => setPlayState(false));
+
+  renderPlayer();
+
+  // ══════════════════════════════════════
+  //  INLINE FORM
+  // ══════════════════════════════════════
+  const ifData = { 'if-ocasion': 'Ninguna en específico', 'if-estilo': '', 'if-plan': '', 'if-edad-incluir': '', 'if-nombre-incluir': '', 'if-emocion': '', 'if-voz': 'Sin preferencia' };
+
+  function ifPill(el, group, val) {
+    const container = el.closest('.pill-group, .plan-pill-group');
+    container.querySelectorAll('.m-pill, .plan-pill').forEach(p => p.classList.remove('sel'));
+    el.classList.add('sel');
+    ifData[group] = val;
+    if (group === 'if-ocasion') {
+      document.getElementById('if-ocasion-otro').style.display = 'none';
+      document.getElementById('if-cumple-extra').style.display = val === 'Cumpleaños' ? 'block' : 'none';
+      if (val !== 'Cumpleaños') {
+        document.getElementById('if-edad-cumple').value = '';
+        ifData['if-edad-incluir'] = '';
+      }
+    }
+  }
+
+  function ifEstiloChange(sel) {
+    const otro = document.getElementById('if-estilo-otro');
+    if (sel.value === 'otro') {
+      otro.style.setProperty('display', 'block', 'important');
+      ifData['if-estilo'] = otro.value;
+      setTimeout(() => otro.focus(), 50);
+    } else {
+      otro.style.setProperty('display', 'none', 'important');
+      ifData['if-estilo'] = sel.value;
+    }
+  }
+
+  function ifPillOtro(el) {
+    const container = el.closest('.pill-group');
+    container.querySelectorAll('.m-pill').forEach(p => p.classList.remove('sel'));
+    el.classList.add('sel');
+    ifData['if-ocasion'] = '';
+    const input = document.getElementById('if-ocasion-otro');
+    input.style.display = 'block';
+    input.focus();
+  }
+
+  function ifGoStep(n) {
+    document.querySelectorAll('#inline-form .modal-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('if-step-' + n).classList.add('active');
+    [['if-sd1',0],['if-sd2',1],['if-sd3',2],['if-sd4',3]].forEach(([id, i]) => {
+      const d = document.getElementById(id);
+      d.classList.toggle('done', i < n - 1);
+      d.classList.toggle('active', i === n - 1);
+    });
+    [['if-sl1',0],['if-sl2',1],['if-sl3',2]].forEach(([id, i]) => {
+      document.getElementById(id).classList.toggle('done', i < n - 1);
+    });
+    document.getElementById('inline-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function ifYaCreo() {
+    const val = localStorage.getItem('lalala_cancion');
+    return val === new Date().toISOString().slice(0, 10);
+  }
+
+  async function ifGenerarLetra() {
+    if (ifYaCreo()) {
+      ifMostrarLimitada();
+      return;
+    }
+
+    const historia = document.getElementById('if-historia').value.trim();
+    if (!historia) { document.getElementById('if-historia').focus(); return; }
+
+    const tuTelVal = window.getIfTelNumber ? window.getIfTelNumber() : document.getElementById('if-telefono').value.trim();
+    if (!tuTelVal) {
+      document.getElementById('if-telefono').focus();
+      document.getElementById('if-telefono').style.borderColor = '#f87171';
+      setTimeout(() => document.getElementById('if-telefono').style.borderColor = '', 2000);
+      return;
+    }
+
+    ifGoStep(4);
+    document.getElementById('if-generar-loading').style.display = 'block';
+    document.getElementById('if-generar-result').style.display = 'none';
+    document.getElementById('if-verificar').style.display = 'none';
+    document.getElementById('if-enviado').style.display = 'none';
+
+    const body = {
+      nombre:       document.getElementById('if-nombre').value.trim(),
+      edad:         document.getElementById('if-edad').value.trim(),
+      relacion:     document.getElementById('if-relacion').value.trim(),
+      ocasion:      ifData['if-ocasion'],
+      estilo:       ifData['if-estilo'] || document.getElementById('if-estilo-select').value,
+      historia,
+      dedicatoria:  document.getElementById('if-dedicatoria').value.trim(),
+      tuNombre:     document.getElementById('if-tunombre').value.trim(),
+      edadCumple:   document.getElementById('if-edad-cumple').value.trim() || null,
+      edadIncluir:  ifData['if-edad-incluir'] || null,
+      nombreIncluir: ifData['if-nombre-incluir'] || null,
+      emocion:      ifData['if-emocion'] || null,
+      voz:          ifData['if-voz'] || null,
+      referencia:   document.getElementById('if-artista').value.trim() || null,
+    };
+
+    try {
+      const res  = await fetch('http://localhost:3001/api/generar-letra', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (data.limitada) { ifMostrarLimitada(); return; }
+      if (data.error) throw new Error(data.error);
+
+      localStorage.setItem('lalala_cancion', new Date().toISOString().slice(0, 10));
+      document.getElementById('if-letra').value = data.letra;
+      document.getElementById('if-genero-label').textContent = body.estilo || 'No especificado';
+    } catch (e) {
+      document.getElementById('if-letra').value = 'Ocurrió un error generando la letra. Intenta de nuevo.';
+    }
+
+    document.getElementById('if-generar-loading').style.display = 'none';
+    document.getElementById('if-generar-result').style.display = 'block';
+  }
+
+  function ifMostrarLimitada() {
+    ifGoStep(4);
+    document.getElementById('if-generar-loading').style.display = 'none';
+    document.getElementById('if-generar-result').style.display = 'none';
+    document.getElementById('if-verificar').style.display = 'none';
+    document.getElementById('if-enviado').style.display = 'none';
+    document.getElementById('if-limitada').style.display = 'block';
+  }
+
+  function ifMostrarVerificacion() {
+    const tel = window.getIfTelNumber ? window.getIfTelNumber() : document.getElementById('if-telefono').value.trim();
+    document.getElementById('if-tel-display').textContent = tel;
+    document.getElementById('if-generar-result').style.display = 'none';
+    document.getElementById('if-verificar').style.display = 'block';
+    document.getElementById('if-enviado').style.display = 'none';
+  }
+
+  async function ifConfirmarEnvio() {
+    const tel    = window.getIfTelNumber ? window.getIfTelNumber() : document.getElementById('if-telefono').value.trim();
+    const letra  = document.getElementById('if-letra')?.value.trim() || '';
+    const estilo = ifData['if-estilo'] || document.getElementById('if-estilo-select').value;
+
+    let pais = null;
+    try {
+      const cached = localStorage.getItem('lalala_geo');
+      if (cached) {
+        const p = JSON.parse(cached);
+        if (p.data?.country_name) pais = p.data.country_name;
+      }
+    } catch(e) {}
+
+    document.getElementById('if-verificar').style.display = 'none';
+    document.getElementById('if-enviado').style.display = 'block';
+
+    try {
+      await fetch('http://localhost:3001/api/webhook-cancion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ letra, estilo, whatsapp: tel, emocion: ifData['if-emocion'] || null, voz: ({ 'Mujer': 'female vocal', 'Hombre': 'male vocal', 'Niño / Niña': 'child vocal' })[ifData['if-voz']] || null, nombre: document.getElementById('if-nombre')?.value.trim() || null, tuNombre: document.getElementById('if-tunombre')?.value.trim() || null, pais, plan: ifData['if-plan'] || null, planMoneda: window._lalalaPrecio?.currency || 'USD', planValor: window._lalalaPrecio ? window._lalalaPrecio[ifData['if-plan']?.toLowerCase()] || null : ({ 'Essential': '$10', 'Premium': '$15' })[ifData['if-plan']] || null }),
+      });
+    } catch(e) { console.error('Webhook error:', e); }
+  }
+
+  function ifNext(step) {
+    if (step === 1) {
+      const tuNombre = document.getElementById('if-tunombre').value.trim();
+      const tel = window.getIfTelNumber ? window.getIfTelNumber() : document.getElementById('if-telefono').value.trim();
+      const nombre = document.getElementById('if-nombre').value.trim();
+      if (!tuNombre) { document.getElementById('if-tunombre').focus(); return; }
+      if (!tel) { document.getElementById('if-telefono').focus(); return; }
+      if (!nombre) { document.getElementById('if-nombre').focus(); return; }
+      // Disparar webhook con inicio=true (fire and forget)
+      try {
+        const pais = (() => { try { const p = JSON.parse(localStorage.getItem('lalala_geo')); return p?.data?.country_name || null; } catch(e) { return null; } })();
+        fetch('http://localhost:3001/api/webhook-cancion', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ inicio: true, tuNombre, whatsapp: tel, nombre, pais }),
+        }).catch(() => {});
+      } catch(e) {}
+      ifGoStep(2);
+      return;
+    }
+    ifGoStep(step + 1);
+  }
+
+  function ifSubmit() {
+    const historia = document.getElementById('if-historia').value.trim();
+    if (!historia) { document.getElementById('if-historia').focus(); return; }
+
+    const nombre   = document.getElementById('if-nombre').value.trim();
+    const edad     = document.getElementById('if-edad').value.trim();
+    const relacion = document.getElementById('if-relacion').value.trim();
+    const artista  = document.getElementById('if-artista').value.trim();
+    const dedicatoria = document.getElementById('if-dedicatoria').value.trim();
+    const tuNombre    = document.getElementById('if-tunombre').value.trim();
+    const tuTel       = window.getIfTelNumber ? window.getIfTelNumber() : document.getElementById('if-telefono').value.trim();
+    const extra       = [edad, relacion].filter(Boolean).join(', ');
+
+    const letra = document.getElementById('if-letra')?.value.trim() || '';
+
+    const lines = [
+      'Hola! Quiero crear una canción personalizada 🎵',
+      '',
+      '👤 Para: ' + nombre + (extra ? ' (' + extra + ')' : ''),
+      '🎉 Ocasión: ' + (ifData['if-ocasion'] || 'No especificada') + (ifData['if-ocasion'] === 'Cumpleaños' && document.getElementById('if-edad-cumple').value.trim() ? ' · Cumple ' + document.getElementById('if-edad-cumple').value.trim() + (ifData['if-edad-incluir'] ? ' (' + ifData['if-edad-incluir'] + ' incluirla)' : '') : ''),
+      '🎸 Estilo: ' + (ifData['if-estilo'] || 'A su criterio') + (artista ? ' (ref: ' + artista + ')' : ''),
+      ifData['if-emocion'] ? '🎭 Emoción: ' + ifData['if-emocion'] : null,
+      ifData['if-voz'] ? '🎤 Voz: ' + ifData['if-voz'] : null,
+      '⭐ Plan: ' + (ifData['if-plan'] || 'No especificado'),
+      '',
+      '📖 Historia:',
+      historia,
+      dedicatoria ? '' : null,
+      dedicatoria ? '💬 Dedicatoria (aparece tal cual en la canción):' : null,
+      dedicatoria ? dedicatoria : null,
+      '',
+      '💌 Mi nombre: ' + (tuNombre || 'No especificado') + (ifData['if-nombre-incluir'] ? ' (' + ifData['if-nombre-incluir'] + ' incluirlo en la canción)' : ''),
+      tuTel ? '📱 Mi WhatsApp: ' + tuTel : null,
+      letra ? '' : null,
+      letra ? '📝 Letra generada:' : null,
+      letra ? letra : null,
+    ].filter(l => l !== null).join('\n');
+
+    window.open('https://wa.me/521XXXXXXXXXX?text=' + encodeURIComponent(lines), '_blank');
+  }
+
+  // ══════════════════════════════════════
+  //  CURRENCY CONVERSION
+  // ══════════════════════════════════════
+  async function initCurrencyConversion() {
+    const USD_PRICES = { essential: 10, premium: 15, essentialOrig: 20, premiumOrig: 30, addon: 5, addonOrig: 10 };
+
+    try {
+      // ── Geo detection with localStorage cache (24h TTL) ──
+      let geo;
+      const CACHE_KEY = 'lalala_geo';
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const p = JSON.parse(cached);
+        if (Date.now() - p.ts < 86400000) geo = p.data;
+      }
+      if (!geo) {
+        const r = await fetch('https://ipapi.co/json/');
+        geo = await r.json();
+        if (geo && geo.currency) {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: geo }));
+        }
+      }
+
+      const currency = (geo.currency || 'USD').toUpperCase();
+      const countryName = geo.country_name || '';
+      if (currency === 'USD') return;
+
+      // Fetch exchange rates (free, no API key, hosted on jsDelivr CDN)
+      const ratesRes = await fetch(
+        'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json'
+      );
+      const ratesData = await ratesRes.json();
+      const rate = ratesData?.usd?.[currency.toLowerCase()];
+
+      if (!rate) return;
+
+      const locale = (geo.languages || 'es').split(',')[0].trim();
+      const fmt = new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency,
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0,
+      });
+
+      const fmtPrice = (usd) => fmt.format(Math.round(usd * rate));
+
+      // Animate the price update
+      const essentialEl = document.getElementById('price-essential');
+      const premiumEl   = document.getElementById('price-premium');
+
+      [essentialEl, premiumEl].forEach(el => el && el.classList.add('price-converting'));
+
+      await new Promise(r => setTimeout(r, 300));
+
+      if (essentialEl) essentialEl.innerHTML = fmtPrice(USD_PRICES.essential) + '<small> ' + currency + '</small>';
+      if (premiumEl)   premiumEl.innerHTML   = fmtPrice(USD_PRICES.premium)   + '<small> ' + currency + '</small>';
+
+      [essentialEl, premiumEl].forEach(el => el && el.classList.remove('price-converting'));
+
+      // Update strikethrough (original) prices
+      const essOrigEl = document.getElementById('price-essential-orig');
+      const premOrigEl = document.getElementById('price-premium-orig');
+      const addonEl = document.getElementById('price-addon');
+      const addonOrigEl = document.getElementById('price-addon-orig');
+      if (essOrigEl)   essOrigEl.textContent  = fmtPrice(USD_PRICES.essentialOrig) + ' ' + currency;
+      if (premOrigEl)  premOrigEl.textContent  = fmtPrice(USD_PRICES.premiumOrig)  + ' ' + currency;
+      if (addonEl)     addonEl.innerHTML       = fmtPrice(USD_PRICES.addon) + ' <small>' + currency + '</small>';
+      if (addonOrigEl) addonOrigEl.textContent = fmtPrice(USD_PRICES.addonOrig)    + ' ' + currency;
+
+      // Update ticker price values
+      document.querySelectorAll('.ticker-price-val').forEach(el => {
+        el.textContent = fmtPrice(USD_PRICES.essential) + ' ' + currency;
+      });
+
+      // Update modal plan pills
+      const modalEssential = document.querySelector('[onclick*="Essential"] .plan-pill-price');
+      const modalPremium   = document.querySelector('[onclick*="Premium"] .plan-pill-price');
+      // Guardar datos de moneda para el webhook
+      window._lalalaPrecio = {
+        currency,
+        essential: fmtPrice(USD_PRICES.essential),
+        premium:   fmtPrice(USD_PRICES.premium),
+      };
+
+      if (modalEssential) modalEssential.textContent = fmtPrice(USD_PRICES.essential) + ' · canción + 1 gratis';
+      if (modalPremium)   modalPremium.textContent   = fmtPrice(USD_PRICES.premium)   + ' · + video lyric';
+
+      // Show currency notice
+      const notice = document.getElementById('currency-notice');
+      const noticeText = document.getElementById('currency-notice-text');
+      if (notice && noticeText) {
+        noticeText.textContent = `Precios aproximados en ${currency} según tu ubicación (${countryName})`;
+        notice.classList.add('visible');
+      }
+
+    } catch (e) {
+      // Silent fail — keep USD prices
+    }
+  }
+
+  initCurrencyConversion();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/js/intlTelInput.min.js"></script>
+<script>
+  const itiInput = document.getElementById('if-telefono');
+  const iti = window.intlTelInput(itiInput, {
+    initialCountry: 'auto',
+    geoIpLookup: cb => {
+      const cached = localStorage.getItem('lalala_geo');
+      if (cached) {
+        try { const p = JSON.parse(cached); if (p.data?.country_code) return cb(p.data.country_code); } catch(e) {}
+      }
+      fetch('https://ipapi.co/json/')
+        .then(r => r.json())
+        .then(d => { cb(d.country_code || 'MX'); })
+        .catch(() => cb('MX'));
+    },
+    separateDialCode: true,
+    nationalMode: true,
+    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/js/utils.js',
+  });
+
+  // Expose for ifSubmit
+  window.getIfTelNumber = () => iti.getNumber();
+
+  // ── SOCIAL PROOF TOAST ──
+  const spEntries = [
+    { name:'Gabriela M.', inicial:'G', msg:'recibió la canción de <strong>su hija Valentina</strong>', time:'hace 4 min' },
+    { name:'Carlos R.',   inicial:'C', msg:'pidió una canción de <strong>cumpleaños</strong>',          time:'hace 9 min' },
+    { name:'Sofía L.',    inicial:'S', msg:'acaba de confirmar su <strong>canción de boda</strong>',     time:'hace 12 min' },
+    { name:'Mariana P.',  inicial:'M', msg:'recibió la canción de <strong>quinceañera</strong>',         time:'hace 18 min' },
+    { name:'Andrés V.',   inicial:'A', msg:'generó una canción para <strong>su abuela</strong>',         time:'hace 21 min' },
+    { name:'Lucía F.',    inicial:'L', msg:'ordenó una canción de <strong>graduación</strong>',          time:'hace 27 min' },
+  ];
+  let spIdx = Math.floor(Math.random() * spEntries.length);
+  function spShow() {
+    const e = spEntries[spIdx % spEntries.length];
+    spIdx++;
+    document.getElementById('sp-avatar').textContent = e.inicial;
+    document.getElementById('sp-text').innerHTML = '<strong>' + e.name + '</strong> ' + e.msg;
+    document.getElementById('sp-time').textContent = '✓ ' + e.time;
+    const t = document.getElementById('sp-toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
+    setTimeout(spShow, 12000 + Math.random() * 8000);
+  }
+  setTimeout(spShow, 5000);
+</script>
+<div class="sp-toast" id="sp-toast">
+  <div class="sp-avatar" id="sp-avatar"></div>
+  <div>
+    <div class="sp-text" id="sp-text"></div>
+    <div class="sp-time" id="sp-time"></div>
+  </div>
+</div>
+</body>
+</html>
