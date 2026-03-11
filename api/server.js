@@ -103,7 +103,7 @@ ${dedicatoria ? `- El [spoken intro] debe contener ÚNICAMENTE la dedicatoria "$
 
 app.post('/api/webhook-cancion', async (req, res) => {
   try {
-    const response = await fetch('https://n8n-n8n.zfmsog.easypanel.host/webhook-test/9ee5b657-2baf-4a2a-9419-d5c28279ab3a', {
+    const response = await fetch('https://n8n-n8n.zfmsog.easypanel.host/webhook/9ee5b657-2baf-4a2a-9419-d5c28279ab3a', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body),
