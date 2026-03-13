@@ -2123,7 +2123,7 @@
       <div class="popular-badge" style="background:var(--y);color:#000">🎁 Mejor valor</div>
       <div class="plan-name">Pack × 3</div>
       <div class="plan-tagline">3 canciones para 3 momentos especiales</div>
-      <div class="price-was"><span>$30 USD</span></div>
+      <div class="price-was"><span id="price-pack3-orig">$30 USD</span></div>
       <div class="plan-price" id="price-pack3">$20<small> USD</small></div>
       <div class="plan-currency">pack completo · ahorras $10</div>
       <ul class="plan-features">
@@ -2885,7 +2885,7 @@
   //  CURRENCY CONVERSION
   // ══════════════════════════════════════
   async function initCurrencyConversion() {
-    const USD_PRICES = { essential: 10, premium: 15, essentialOrig: 20, premiumOrig: 30, addon: 5, addonOrig: 10 };
+    const USD_PRICES = { essential: 10, premium: 15, essentialOrig: 20, premiumOrig: 30, addon: 5, addonOrig: 10, pack3: 20, pack3Orig: 30 };
 
     try {
       // ── Geo detection with localStorage cache (24h TTL) ──
@@ -2930,23 +2930,27 @@
       // Animate the price update
       const essentialEl = document.getElementById('price-essential');
       const premiumEl   = document.getElementById('price-premium');
+      const pack3El     = document.getElementById('price-pack3');
 
-      [essentialEl, premiumEl].forEach(el => el && el.classList.add('price-converting'));
+      [essentialEl, premiumEl, pack3El].forEach(el => el && el.classList.add('price-converting'));
 
       await new Promise(r => setTimeout(r, 300));
 
       if (essentialEl) essentialEl.innerHTML = fmtPrice(USD_PRICES.essential) + '<small> ' + currency + '</small>';
       if (premiumEl)   premiumEl.innerHTML   = fmtPrice(USD_PRICES.premium)   + '<small> ' + currency + '</small>';
+      if (pack3El)     pack3El.innerHTML     = fmtPrice(USD_PRICES.pack3)     + '<small> ' + currency + '</small>';
 
-      [essentialEl, premiumEl].forEach(el => el && el.classList.remove('price-converting'));
+      [essentialEl, premiumEl, pack3El].forEach(el => el && el.classList.remove('price-converting'));
 
       // Update strikethrough (original) prices
       const essOrigEl = document.getElementById('price-essential-orig');
       const premOrigEl = document.getElementById('price-premium-orig');
       const addonEl = document.getElementById('price-addon');
       const addonOrigEl = document.getElementById('price-addon-orig');
+      const pack3OrigEl = document.getElementById('price-pack3-orig');
       if (essOrigEl)   essOrigEl.textContent  = fmtPrice(USD_PRICES.essentialOrig) + ' ' + currency;
       if (premOrigEl)  premOrigEl.textContent  = fmtPrice(USD_PRICES.premiumOrig)  + ' ' + currency;
+      if (pack3OrigEl) pack3OrigEl.textContent = fmtPrice(USD_PRICES.pack3Orig)    + ' ' + currency;
       if (addonEl)     addonEl.innerHTML       = fmtPrice(USD_PRICES.addon) + ' <small>' + currency + '</small>';
       if (addonOrigEl) addonOrigEl.textContent = fmtPrice(USD_PRICES.addonOrig)    + ' ' + currency;
 
